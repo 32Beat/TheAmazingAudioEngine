@@ -23,26 +23,22 @@
 
 - (void) startUpdating
 {
-/*
-	dispatch_queue_t globalQueue = dispatch_get_global_queue \
-	(QOS_CLASS_USER_INTERACTIVE, DISPATCH_QUEUE_PRIORITY_HIGH);
-
-	dispatch_after(dispatch_time(0.0, 100000000), globalQueue,
-	^{
-		dispatch_async(dispatch_get_main_queue(),
-		^{ [self timerDidFire:nil]; });
-	});
-	
-	return;
-*/	
 	if (mTimer == nil)
 	{
 		// set timer to appr 25 updates per second
-		mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/25.0
+		mTimer = [NSTimer timerWithTimeInterval:1.0/25.0
 		target:self selector:@selector(timerDidFire:) userInfo:nil repeats:YES];
 		
 		// add tolerance down to appr 20 updates per second
 		[mTimer setTolerance:(1.0/20.0)-(1.0/25.0)];
+		
+		// add to runloop
+		[[NSRunLoop currentRunLoop] addTimer:mTimer forMode:NSRunLoopCommonModes];
+		
+		/*
+			Note that a scheduledTimer will only run in default runloopmode,
+			which means it doesn't fire during tracking or modal panels, etc...
+		*/
 	}
 }
 
