@@ -36,7 +36,7 @@ rmsengine_t RMSEngineInit(double sampleRate)
 	0.0, 0.0, 0.0, 0.0,
 	0.0, 0.0, 0.0, 0.0 };
 	
-	RMSEngineSetResponse(&engine, 400, sampleRate);
+	RMSEngineSetResponse(&engine, 300, sampleRate);
 	
 	return engine;
 }
@@ -47,10 +47,10 @@ void RMSEngineSetResponse(rmsengine_t *engine, double milliSeconds, double sampl
 {
 	double decayRate = 0.001 * milliSeconds * sampleRate;
 	
+	engine->mBalM = 1.0 / (1.0 + decayRate * 10);
 	engine->mAvgM = 1.0 / (1.0 + decayRate);
 	engine->mMaxM = 1.0 / (1.0 + decayRate);
-	engine->mHldM = 1.0 / (1.0 + decayRate * 4);
-	engine->mClpM = 0.0;
+	engine->mHldM = 1.0 / (1.0 + decayRate * 5);
 	
 	// default hold time = 1.0 seconds
 	engine->mHldT = 1.0 * sampleRate;
@@ -88,8 +88,14 @@ void RMSEngineAddSample(rmsengine_t *engine, double sample)
 	// Update maximum
 	engine->mMax = rms_max(engine->mMax, engine->mMaxM, sample);
 
-	// Update rms average
-	engine->mAvg = rms_add(engine->mAvg, engine->mAvgM, sample * sample);
+	// the s in rms
+	sample *= sample;
+	
+	// Update short term rms average
+	engine->mAvg = rms_add(engine->mAvg, engine->mAvgM, sample);
+
+	// Update long term rms average
+	engine->mBal = rms_add(engine->mBal, engine->mBalM, sample);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -108,11 +114,10 @@ rmsresult_t RMSEngineFetchResult(const rmsengine_t *enginePtr)
 	
 	if (enginePtr != NULL)
 	{
+		levels.mBal = sqrt(enginePtr->mBal);
 		levels.mAvg = sqrt(enginePtr->mAvg);
 		levels.mMax = enginePtr->mMax;
 		levels.mHld = enginePtr->mHld;
-		levels.mClp = enginePtr->mClpD != 0.0 ?
-		enginePtr->mClpN / enginePtr->mClpD : 0.0;
 	}
 	
 	return levels;
@@ -125,6 +130,7 @@ rmsresult_t RMSEngineFetchResultDB(rmsengine_t *enginePtr)
 {
 	rmsresult_t levels = RMSEngineFetchResult(enginePtr);
 	
+	levels.mBal = 10.0*log10(levels.mBal);
 	levels.mAvg = 10.0*log10(levels.mAvg);
 	levels.mMax = 20.0*log10(levels.mMax);
 	levels.mHld = 20.0*log10(levels.mHld);

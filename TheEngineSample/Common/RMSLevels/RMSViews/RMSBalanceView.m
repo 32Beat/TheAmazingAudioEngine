@@ -32,8 +32,8 @@
 
 - (void) updateBalance
 {
-	double L = self.enginePtrL ? self.enginePtrL->mAvg : 0.0;
-	double R = self.enginePtrR ? self.enginePtrR->mAvg : 0.0;
+	double L = self.enginePtrL ? self.enginePtrL->mBal : 0.0;
+	double R = self.enginePtrR ? self.enginePtrR->mBal : 0.0;
 
 	[self setBalance:R-L];
 }

@@ -33,16 +33,16 @@
 // Structure for intermediate sample processing
 typedef struct rmsengine_t
 {
+	double mBal;
 	double mAvg;
 	double mMax;
 	double mHld;
-	double mClp;
 
 	// multipliers based on samplerate
+	double mBalM;
 	double mAvgM;
 	double mMaxM;
 	double mHldM;
-	double mClpM;
 	
 	// counters
 	uint64_t mHldT; // hold time in samples
@@ -57,10 +57,10 @@ rmsengine_t;
 // Structure to communicate results
 typedef struct rmsresult_t
 {
+	double mBal;
 	double mAvg;
 	double mMax;
 	double mHld;
-	double mClp;
 }
 rmsresult_t;
 

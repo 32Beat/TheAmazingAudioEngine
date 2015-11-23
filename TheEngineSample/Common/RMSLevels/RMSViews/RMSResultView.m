@@ -113,6 +113,15 @@
 
 - (void)drawRect:(NSRect)rect
 {
+	// Reverse direction if necessary
+	if (self.direction != 0)
+	{
+		CGContextRef context = NSGraphicsGetCurrentContext();
+		CGContextTranslateCTM(context, self.bounds.size.width, 0.0);
+		CGContextScaleCTM(context, -1.0, 1.0);
+	}
+	[self drawHorizontal];
+	return;
 	[[self bckColor] set];
 	NSRectFill(self.bounds);
 
@@ -136,6 +145,43 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+- (void) drawHorizontal
+{
+	// Source = mLevels
+	rmsresult_t levels = mLevels;
+	// Destination = frame
+	NSRect frame = self.bounds;
+	
+	// scale values to width
+	double W = frame.size.width;
+	
+	// Average
+	[[self avgColor] set];
+	frame.size.width = round(W * RMS2DISPLAY(levels.mAvg));
+	NSRectFill(frame);
+
+	[[self maxColor] set];
+	frame.origin.x += frame.size.width;
+	frame.size.width = round(W * RMS2DISPLAY(levels.mMax));
+	frame.size.width -= frame.origin.x;
+	NSRectFill(frame);
+
+	[[self hldColor] set];
+	frame.origin.x += frame.size.width;
+	frame.size.width = round(W * RMS2DISPLAY(levels.mHld));
+	frame.size.width -= frame.origin.x;
+	NSRectFill(frame);
+
+	[[self bckColor] set];
+	frame.origin.x += frame.size.width;
+	frame.size.width = W;
+	frame.size.width -= frame.origin.x;
+	NSRectFill(frame);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 - (NSRect) boundsWithRatio:(double)ratio
 {
 	NSRect bounds = self.bounds;
@@ -143,23 +189,20 @@
 	// Adjust for display scale
 	ratio = RMS2DISPLAY(ratio);
 	
-	if (ratio < 1.0)
+	if (_direction == 0)
+	{ _direction = (bounds.size.width > bounds.size.height) ? 1 : 4; }
+	
+	if (_direction & 0x01)
 	{
-		if (_direction == 0)
-		{ _direction = (bounds.size.width > bounds.size.height) ? 1 : 4; }
-		
-		if (_direction & 0x01)
-		{
-			bounds.size.width *= ratio;
-			if (_direction & 0x02)
-			bounds.origin.x += self.bounds.size.width - bounds.size.width;
-		}
-		else
-		{
-			bounds.size.height *= ratio;
-			if (_direction & 0x02)
-			bounds.origin.y += self.bounds.size.height - bounds.size.height;
-		}
+		bounds.size.width *= ratio;
+		if (_direction & 0x02)
+		bounds.origin.x += self.bounds.size.width - bounds.size.width;
+	}
+	else
+	{
+		bounds.size.height *= ratio;
+		if (_direction & 0x02)
+		bounds.origin.y += self.bounds.size.height - bounds.size.height;
 	}
 	
 	return bounds;

@@ -8,13 +8,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #if !TARGET_OS_IOS
+
 #import <Cocoa/Cocoa.h>
+
+static inline CGContextRef NSGraphicsGetCurrentContext(void)
+{ return (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort]; }
+
 #else
+
 #import <UIKit/UIKit.h>
 #define NSView 		UIView
 #define NSColor 	UIColor
 #define NSRect 		CGRect
 #define NSRectFill 	UIRectFill
+#define NSGraphicsGetCurrentContext UIGraphicsGetCurrentContext
+
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////

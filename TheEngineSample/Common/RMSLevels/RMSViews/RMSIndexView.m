@@ -9,18 +9,6 @@
 
 #import "RMSIndexView.h"
 
-
-// Fetch appropriate CGContext on different platforms in drawRect
-static CGContextRef NSGraphicsGetCurrentContext(void)
-{
-#if TARGET_OS_IOS
-	return UIGraphicsGetCurrentContext();
-#else
-	return (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
-#endif
-}
-
-
 ////////////////////////////////////////////////////////////////////////////////
 @implementation RMSIndexView
 ////////////////////////////////////////////////////////////////////////////////
