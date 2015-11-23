@@ -88,12 +88,17 @@
 
 - (void) updateLevels
 {
-	rmsresult_t L = RMSEngineFetchResult(self.enginePtrL);
-	rmsresult_t R = RMSEngineFetchResult(self.enginePtrR);
-	
-	[self.resultViewL setLevels:L];
-	[self.resultViewR setLevels:R];
+	[self setResultL:RMSEngineFetchResult(self.enginePtrL)];
+	[self setResultR:RMSEngineFetchResult(self.enginePtrR)];
 }
+
+////////////////////////////////////////////////////////////////////////////////
+
+- (void) setResultL:(rmsresult_t)levels
+{ [self.resultViewL setLevels:levels]; }
+
+- (void) setResultR:(rmsresult_t)levels
+{ [self.resultViewR setLevels:levels]; }
 
 ////////////////////////////////////////////////////////////////////////////////
 
