@@ -15,7 +15,7 @@
 #import "AERecorder.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "AERMSStereoView.h"
+#import "AERMSBalanceView.h"
 
 #define checkResult(result,operation) (_checkResult((result),(operation),strrchr(__FILE__, '/')+1,__LINE__))
 static inline BOOL _checkResult(OSStatus result, const char *operation, const char* file, int line) {
@@ -74,7 +74,7 @@ static const int kInputChannelsChangedContext;
     [self.view addSubview:_headerView];
 	
 	NSRect frame = _headerView.bounds;
-	AERMSStereoView *rmsView = [[AERMSStereoView alloc] initWithFrame:frame];
+	AERMSBalanceView *rmsView = [[AERMSBalanceView alloc] initWithFrame:frame];
 
 	[_headerView addSubview:rmsView];
 	

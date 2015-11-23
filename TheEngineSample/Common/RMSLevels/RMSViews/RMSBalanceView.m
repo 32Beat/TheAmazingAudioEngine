@@ -46,9 +46,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-- (RMSLevelsView *) resultViewL
+- (RMSResultView *) resultViewL
 {
-	RMSLevelsView *view = [super resultViewL];
+	RMSResultView *view = [super resultViewL];
 	view.direction = eRMSViewDirectionW;
 	return view;
 }
@@ -65,6 +65,9 @@
 	self.balanceIndicator.frame = frame;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark
+#pragma mark Drawing
 ////////////////////////////////////////////////////////////////////////////////
 
 - (void) drawRect:(NSRect)rect

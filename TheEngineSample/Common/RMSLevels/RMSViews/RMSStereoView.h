@@ -1,0 +1,24 @@
+////////////////////////////////////////////////////////////////////////////////
+/*
+	RMSStereoView.h
+	
+	Created by 32BT on 15/11/15.
+	Copyright © 2015 32BT. All rights reserved.
+*/
+////////////////////////////////////////////////////////////////////////////////
+
+#import "RMSTimerView.h"
+#import "RMSResultView.h"
+
+@interface RMSStereoView : RMSTimerView
+
+@property (nonatomic, assign) const rmsengine_t *enginePtrL;
+@property (nonatomic, assign) const rmsengine_t *enginePtrR;
+
+- (RMSResultView *) resultViewL;
+- (RMSResultView *) resultViewR;
+
+- (NSRect) frameForResultViewL;
+- (NSRect) frameForResultViewR;
+
+@end

@@ -49,6 +49,8 @@
 
 - (void) timerDidFire:(NSTimer *)timer
 {
+	NSLog(@"%@", @"timerDidFire not implemented");
+	[self stopUpdating];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
