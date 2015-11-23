@@ -42,8 +42,6 @@
 		4C50FEFF1B75883D00E56620 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C50FEF81B75883D00E56620 /* main.m */; };
 		4C50FF011B75883D00E56620 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C50FEFC1B75883D00E56620 /* ViewController.m */; };
 		4C50FF081B7588BC00E56620 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C50FF071B7588BC00E56620 /* Images.xcassets */; };
-		4C50FF0B1B758B5500E56620 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C50FF0A1B758B5500E56620 /* TPOscilloscopeLayer.m */; };
-		4C50FF0C1B758B5500E56620 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C50FF0A1B758B5500E56620 /* TPOscilloscopeLayer.m */; };
 		4C50FF111B758B5B00E56620 /* Organ Run.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4C50FF0E1B758B5B00E56620 /* Organ Run.m4a */; };
 		4C50FF121B758B5B00E56620 /* Organ Run.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4C50FF0E1B758B5B00E56620 /* Organ Run.m4a */; };
 		4C50FF131B758B5B00E56620 /* Southern Rock Drums.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 4C50FF0F1B758B5B00E56620 /* Southern Rock Drums.m4a */; };
@@ -75,6 +73,23 @@
 		7A8D23361B72B5170054D2B2 /* TPCircularBuffer+AudioBufferList.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C680516F1609800721E60 /* TPCircularBuffer+AudioBufferList.c */; };
 		7A8D23371B72B5170054D2B2 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C680716F1609800721E60 /* TPCircularBuffer.c */; };
 		7AFFB76C1B75307500892749 /* AERecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C680216F1609800721E60 /* AERecorder.m */; };
+		7F9EEE161C0241230034DB62 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */; };
+		7F9EEE171C0244F30034DB62 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */; };
+		7FC9016B1C02BD6700180257 /* RMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC9016A1C02BD6700180257 /* RMSTimerView.m */; };
+		7FC9016C1C02BD6700180257 /* RMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC9016A1C02BD6700180257 /* RMSTimerView.m */; };
+		7FC901701C02C68100180257 /* RMSBalanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC9016F1C02C68100180257 /* RMSBalanceView.m */; };
+		7FC901711C02C68100180257 /* RMSBalanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC9016F1C02C68100180257 /* RMSBalanceView.m */; };
+		7FD48C521C0240C0008FAF0E /* rmslevels.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FD48C471C0240C0008FAF0E /* rmslevels.c */; };
+		7FD48C531C0240C0008FAF0E /* rmslevels.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FD48C471C0240C0008FAF0E /* rmslevels.c */; };
+		7FD48C541C0240C0008FAF0E /* AERMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD48C4B1C0240C0008FAF0E /* AERMSStereoView.m */; };
+		7FD48C551C0240C0008FAF0E /* AERMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD48C4B1C0240C0008FAF0E /* AERMSStereoView.m */; };
+		7FD48C561C0240C0008FAF0E /* RMSIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD48C4D1C0240C0008FAF0E /* RMSIndexView.m */; };
+		7FD48C571C0240C0008FAF0E /* RMSIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD48C4D1C0240C0008FAF0E /* RMSIndexView.m */; };
+		7FD48C581C0240C0008FAF0E /* RMSLevelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD48C4F1C0240C0008FAF0E /* RMSLevelsView.m */; };
+		7FD48C591C0240C0008FAF0E /* RMSLevelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD48C4F1C0240C0008FAF0E /* RMSLevelsView.m */; };
+		7FD48C5A1C0240C0008FAF0E /* RMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD48C511C0240C0008FAF0E /* RMSStereoView.m */; };
+		7FD48C5B1C0240C0008FAF0E /* RMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD48C511C0240C0008FAF0E /* RMSStereoView.m */; };
+		7FF8FA711C02349700AB4DDB /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF8FA6F1C02349700AB4DDB /* MainView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +120,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7A56870F1B54610900243427;
 			remoteInfo = "TheAmazingAudioEngine OS X";
+		};
+		7FF8FA731C02349900AB4DDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C7C67EC16F1605A00721E60 /* TheAmazingAudioEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17BB5B401BECD101007A2892;
+			remoteInfo = "TheAmazingAudioEngine tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -150,8 +172,6 @@
 		4C50FEFB1B75883D00E56620 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = iOS/ViewController.h; sourceTree = "<group>"; };
 		4C50FEFC1B75883D00E56620 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = iOS/ViewController.m; sourceTree = "<group>"; };
 		4C50FF071B7588BC00E56620 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iOS/Images.xcassets; sourceTree = "<group>"; };
-		4C50FF091B758B5500E56620 /* TPOscilloscopeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPOscilloscopeLayer.h; path = Common/TPOscilloscopeLayer.h; sourceTree = "<group>"; };
-		4C50FF0A1B758B5500E56620 /* TPOscilloscopeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TPOscilloscopeLayer.m; path = Common/TPOscilloscopeLayer.m; sourceTree = "<group>"; };
 		4C50FF0E1B758B5B00E56620 /* Organ Run.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Organ Run.m4a"; sourceTree = "<group>"; };
 		4C50FF0F1B758B5B00E56620 /* Southern Rock Drums.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Southern Rock Drums.m4a"; sourceTree = "<group>"; };
 		4C50FF101B758B5B00E56620 /* Southern Rock Organ.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Southern Rock Organ.m4a"; sourceTree = "<group>"; };
@@ -183,6 +203,23 @@
 		4C7C680816F1609800721E60 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
 		4CCF896A1BA96D880045E575 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "iOS/Launch Screen.xib"; sourceTree = "<group>"; };
 		7A8D22F51B72AF5C0054D2B2 /* TheEngineSampleOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheEngineSampleOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F9EEE141C0241230034DB62 /* TPOscilloscopeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPOscilloscopeLayer.h; sourceTree = "<group>"; };
+		7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPOscilloscopeLayer.m; sourceTree = "<group>"; };
+		7FC901691C02BD6700180257 /* RMSTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSTimerView.h; sourceTree = "<group>"; };
+		7FC9016A1C02BD6700180257 /* RMSTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSTimerView.m; sourceTree = "<group>"; };
+		7FC9016E1C02C68100180257 /* RMSBalanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSBalanceView.h; sourceTree = "<group>"; };
+		7FC9016F1C02C68100180257 /* RMSBalanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSBalanceView.m; sourceTree = "<group>"; };
+		7FD48C471C0240C0008FAF0E /* rmslevels.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rmslevels.c; sourceTree = "<group>"; };
+		7FD48C481C0240C0008FAF0E /* rmslevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rmslevels.h; sourceTree = "<group>"; };
+		7FD48C4A1C0240C0008FAF0E /* AERMSStereoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERMSStereoView.h; sourceTree = "<group>"; };
+		7FD48C4B1C0240C0008FAF0E /* AERMSStereoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERMSStereoView.m; sourceTree = "<group>"; };
+		7FD48C4C1C0240C0008FAF0E /* RMSIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSIndexView.h; sourceTree = "<group>"; };
+		7FD48C4D1C0240C0008FAF0E /* RMSIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSIndexView.m; sourceTree = "<group>"; };
+		7FD48C4E1C0240C0008FAF0E /* RMSLevelsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSLevelsView.h; sourceTree = "<group>"; };
+		7FD48C4F1C0240C0008FAF0E /* RMSLevelsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSLevelsView.m; sourceTree = "<group>"; };
+		7FD48C501C0240C0008FAF0E /* RMSStereoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSStereoView.h; sourceTree = "<group>"; };
+		7FD48C511C0240C0008FAF0E /* RMSStereoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSStereoView.m; sourceTree = "<group>"; };
+		7FF8FA701C02349700AB4DDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "TheEngineSample/OS X/Base.lproj/MainView.xib"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,12 +329,13 @@
 		4C50FED41B75860100E56620 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				4C50FF091B758B5500E56620 /* TPOscilloscopeLayer.h */,
-				4C50FF0A1B758B5500E56620 /* TPOscilloscopeLayer.m */,
+				7F9EEE141C0241230034DB62 /* TPOscilloscopeLayer.h */,
+				7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */,
+				7FD48C461C0240C0008FAF0E /* RMSLevels */,
 				4C50FF0D1B758B5B00E56620 /* Resources */,
 			);
 			name = Common;
-			path = TheEngineSample;
+			path = TheEngineSample/Common;
 			sourceTree = "<group>";
 		};
 		4C50FEF21B7587AB00E56620 /* Frameworks */ = {
@@ -321,8 +359,7 @@
 				4C50FF0F1B758B5B00E56620 /* Southern Rock Drums.m4a */,
 				4C50FF101B758B5B00E56620 /* Southern Rock Organ.m4a */,
 			);
-			name = Resources;
-			path = Common/Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		4C7C67ED16F1605A00721E60 /* Products */ = {
@@ -330,6 +367,7 @@
 			children = (
 				4C7C67F116F1605A00721E60 /* libTheAmazingAudioEngine.a */,
 				7A8D22F01B72AF250054D2B2 /* libTheAmazingAudioEngine OS X.a */,
+				7FF8FA741C02349900AB4DDB /* libTheAmazingAudioEngine tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -383,6 +421,7 @@
 				4C50FF251B75936000E56620 /* AppDelegate.m */,
 				4C50FF2C1B75936000E56620 /* ViewController.h */,
 				4C50FF2D1B75936000E56620 /* ViewController.m */,
+				7FF8FA6F1C02349700AB4DDB /* MainView.xib */,
 				7A8D22F71B72AF5C0054D2B2 /* Supporting Files */,
 			);
 			path = TheEngineSampleOSX;
@@ -397,6 +436,35 @@
 				4C50FF291B75936000E56620 /* Images.xcassets */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7FD48C461C0240C0008FAF0E /* RMSLevels */ = {
+			isa = PBXGroup;
+			children = (
+				7FD48C471C0240C0008FAF0E /* rmslevels.c */,
+				7FD48C481C0240C0008FAF0E /* rmslevels.h */,
+				7FD48C491C0240C0008FAF0E /* RMSViews */,
+			);
+			path = RMSLevels;
+			sourceTree = "<group>";
+		};
+		7FD48C491C0240C0008FAF0E /* RMSViews */ = {
+			isa = PBXGroup;
+			children = (
+				7FD48C4A1C0240C0008FAF0E /* AERMSStereoView.h */,
+				7FD48C4B1C0240C0008FAF0E /* AERMSStereoView.m */,
+				7FD48C4C1C0240C0008FAF0E /* RMSIndexView.h */,
+				7FD48C4D1C0240C0008FAF0E /* RMSIndexView.m */,
+				7FD48C4E1C0240C0008FAF0E /* RMSLevelsView.h */,
+				7FD48C4F1C0240C0008FAF0E /* RMSLevelsView.m */,
+				7FC9016E1C02C68100180257 /* RMSBalanceView.h */,
+				7FC9016F1C02C68100180257 /* RMSBalanceView.m */,
+				7FD48C501C0240C0008FAF0E /* RMSStereoView.h */,
+				7FD48C511C0240C0008FAF0E /* RMSStereoView.m */,
+				7FC901691C02BD6700180257 /* RMSTimerView.h */,
+				7FC9016A1C02BD6700180257 /* RMSTimerView.m */,
+			);
+			path = RMSViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -492,6 +560,13 @@
 			remoteRef = 7A8D22EF1B72AF250054D2B2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7FF8FA741C02349900AB4DDB /* libTheAmazingAudioEngine tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libTheAmazingAudioEngine tvOS.a";
+			remoteRef = 7FF8FA731C02349900AB4DDB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -515,6 +590,7 @@
 				4C50FF141B758B5B00E56620 /* Southern Rock Drums.m4a in Resources */,
 				4C50FF301B75936000E56620 /* Images.xcassets in Resources */,
 				4C50FF121B758B5B00E56620 /* Organ Run.m4a in Resources */,
+				7FF8FA711C02349700AB4DDB /* MainView.xib in Resources */,
 				4C50FF161B758B5B00E56620 /* Southern Rock Organ.m4a in Resources */,
 				4C50FF361B75937300E56620 /* MainMenu.xib in Resources */,
 			);
@@ -527,10 +603,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F9EEE161C0241230034DB62 /* TPOscilloscopeLayer.m in Sources */,
 				4C2933A11BB2814400AAED25 /* AEHighShelfFilter.m in Sources */,
 				4C2933A51BB2814400AAED25 /* AELowShelfFilter.m in Sources */,
+				7FD48C561C0240C0008FAF0E /* RMSIndexView.m in Sources */,
 				4C2933AB1BB2814400AAED25 /* AEPeakLimiterFilter.m in Sources */,
-				4C50FF0B1B758B5500E56620 /* TPOscilloscopeLayer.m in Sources */,
 				4C2933AF1BB2814400AAED25 /* AEVarispeedFilter.m in Sources */,
 				4C7C680916F1609800721E60 /* AEExpanderFilter.m in Sources */,
 				4C7C680A16F1609800721E60 /* AELimiter.m in Sources */,
@@ -539,18 +616,24 @@
 				4C50FEFD1B75883D00E56620 /* AppDelegate.m in Sources */,
 				4C7C680C16F1609800721E60 /* AEMixerBuffer.m in Sources */,
 				4C2933A31BB2814400AAED25 /* AELowPassFilter.m in Sources */,
+				7FD48C581C0240C0008FAF0E /* RMSLevelsView.m in Sources */,
+				7FC9016B1C02BD6700180257 /* RMSTimerView.m in Sources */,
 				4C50FF011B75883D00E56620 /* ViewController.m in Sources */,
 				4C7C680D16F1609800721E60 /* AEPlaythroughChannel.m in Sources */,
 				4C7C680E16F1609800721E60 /* AERecorder.m in Sources */,
+				7FD48C521C0240C0008FAF0E /* rmslevels.c in Sources */,
 				4C29339D1BB2814400AAED25 /* AEDynamicsProcessorFilter.m in Sources */,
 				4C7C681016F1609800721E60 /* TPCircularBuffer+AudioBufferList.c in Sources */,
+				7FD48C541C0240C0008FAF0E /* AERMSStereoView.m in Sources */,
 				4C50FEFF1B75883D00E56620 /* main.m in Sources */,
 				4C7C681116F1609800721E60 /* TPCircularBuffer.c in Sources */,
 				4C2933A91BB2814400AAED25 /* AEParametricEqFilter.m in Sources */,
 				4C29339F1BB2814400AAED25 /* AEHighPassFilter.m in Sources */,
 				4C29339B1BB2814400AAED25 /* AEDistortionFilter.m in Sources */,
 				4C2933AD1BB2814400AAED25 /* AEReverbFilter.m in Sources */,
+				7FD48C5A1C0240C0008FAF0E /* RMSStereoView.m in Sources */,
 				4C2933971BB2814400AAED25 /* AEBandpassFilter.m in Sources */,
+				7FC901701C02C68100180257 /* RMSBalanceView.m in Sources */,
 				4C2933A71BB2814400AAED25 /* AENewTimePitchFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -563,6 +646,7 @@
 				4C2933A61BB2814400AAED25 /* AELowShelfFilter.m in Sources */,
 				4C2933AC1BB2814400AAED25 /* AEPeakLimiterFilter.m in Sources */,
 				7A532D2B1B7C6FA8006056DB /* AEPlaythroughChannel.m in Sources */,
+				7F9EEE171C0244F30034DB62 /* TPOscilloscopeLayer.m in Sources */,
 				4C2933B01BB2814400AAED25 /* AEVarispeedFilter.m in Sources */,
 				4C50FF331B75936000E56620 /* ViewController.m in Sources */,
 				4C50FF321B75936000E56620 /* main.m in Sources */,
@@ -571,18 +655,24 @@
 				7A8D23361B72B5170054D2B2 /* TPCircularBuffer+AudioBufferList.c in Sources */,
 				7A8D23371B72B5170054D2B2 /* TPCircularBuffer.c in Sources */,
 				4C2933A41BB2814400AAED25 /* AELowPassFilter.m in Sources */,
+				7FC901711C02C68100180257 /* RMSBalanceView.m in Sources */,
 				7A8D23351B72B50A0054D2B2 /* AEMixerBuffer.m in Sources */,
 				7A8D23341B72B4FB0054D2B2 /* AELimiterFilter.m in Sources */,
-				4C50FF0C1B758B5500E56620 /* TPOscilloscopeLayer.m in Sources */,
 				4C29339E1BB2814400AAED25 /* AEDynamicsProcessorFilter.m in Sources */,
 				7A8D23331B72B4E20054D2B2 /* AEExpanderFilter.m in Sources */,
 				7A8D23321B72B4DD0054D2B2 /* AELimiter.m in Sources */,
 				4C50FF2E1B75936000E56620 /* AppDelegate.m in Sources */,
+				7FD48C5B1C0240C0008FAF0E /* RMSStereoView.m in Sources */,
+				7FD48C551C0240C0008FAF0E /* AERMSStereoView.m in Sources */,
+				7FD48C531C0240C0008FAF0E /* rmslevels.c in Sources */,
 				4C2933AA1BB2814400AAED25 /* AEParametricEqFilter.m in Sources */,
 				4C2933A01BB2814400AAED25 /* AEHighPassFilter.m in Sources */,
 				4C29339C1BB2814400AAED25 /* AEDistortionFilter.m in Sources */,
+				7FD48C571C0240C0008FAF0E /* RMSIndexView.m in Sources */,
 				4C2933981BB2814400AAED25 /* AEBandpassFilter.m in Sources */,
+				7FD48C591C0240C0008FAF0E /* RMSLevelsView.m in Sources */,
 				4C2933A81BB2814400AAED25 /* AENewTimePitchFilter.m in Sources */,
+				7FC9016C1C02BD6700180257 /* RMSTimerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +698,14 @@
 				4C50FF351B75937300E56620 /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		7FF8FA6F1C02349700AB4DDB /* MainView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FF8FA701C02349700AB4DDB /* Base */,
+			);
+			name = MainView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

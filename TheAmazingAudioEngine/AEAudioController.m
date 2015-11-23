@@ -1368,7 +1368,7 @@ static OSStatus ioUnitRenderNotifyCallback(void *inRefCon, AudioUnitRenderAction
 }
 
 -(float)volumeForChannelGroup:(AEChannelGroupRef)group {
-    return group->channel->volume;
+    return group ? group->channel->volume : 0.0;
 }
 
 - (void)setPan:(float)pan forChannelGroup:(AEChannelGroupRef)group {
@@ -1410,7 +1410,7 @@ static OSStatus ioUnitRenderNotifyCallback(void *inRefCon, AudioUnitRenderAction
 }
 
 -(BOOL)channelGroupIsMuted:(AEChannelGroupRef)group {
-    return group->channel->muted;
+    return group ? group->channel->muted : YES;
 }
 
 #pragma mark - Filters

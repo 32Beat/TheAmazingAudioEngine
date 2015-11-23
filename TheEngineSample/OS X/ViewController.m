@@ -15,6 +15,8 @@
 #import "AERecorder.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import "AERMSStereoView.h"
+
 #define checkResult(result,operation) (_checkResult((result),(operation),strrchr(__FILE__, '/')+1,__LINE__))
 static inline BOOL _checkResult(OSStatus result, const char *operation, const char* file, int line) {
     if ( result != noErr ) {
@@ -70,7 +72,16 @@ static const int kInputChannelsChangedContext;
     _headerView = [[NSView alloc] initWithFrame:NSMakeRect(0, self.view.bounds.size.height - 100, self.view.bounds.size.width, 100)];
     _headerView.wantsLayer = YES;
     [self.view addSubview:_headerView];
+	
+	NSRect frame = _headerView.bounds;
+	AERMSStereoView *rmsView = [[AERMSStereoView alloc] initWithFrame:frame];
 
+	[_headerView addSubview:rmsView];
+	
+	[_audioController addOutputReceiver:rmsView];
+	[rmsView startUpdating];
+	
+/*
     self.outputOscilloscope = [[TPOscilloscopeLayer alloc] initWithAudioDescription:_audioController.audioDescription];
     _outputOscilloscope.frame = NSMakeRect(0, 10, _headerView.bounds.size.width, 80);
     [_headerView.layer addSublayer:_outputOscilloscope];
@@ -93,7 +104,7 @@ static const int kInputChannelsChangedContext;
     _outputLevelLayer.backgroundColor = [[NSColor colorWithWhite:0.0 alpha:0.3] CGColor];
     _outputLevelLayer.frame = NSMakeRect(_headerView.bounds.size.width/2.0 + 5.0, 0, 50, 10);
     [_headerView.layer addSublayer:_outputLevelLayer];
-    
+*/
     _tableView = [[NSTableView alloc] initWithFrame:NSMakeRect(0, 75, self.view.bounds.size.width, 300)];
     [self.view addSubview:_tableView];
     _tableView.delegate = self;
@@ -136,7 +147,9 @@ static const int kInputChannelsChangedContext;
     if ( !(self = [super init]) ) return nil;
     
     self.audioController = audioController;
-    
+	
+	[self prepareChannelGroup];
+ /*
     // Create the first loop player
     self.loop1 = [AEAudioFilePlayer
                   audioFilePlayerWithURL:[[NSBundle mainBundle] URLForResource:@"Southern Rock Drums" withExtension:@"m4a"]
@@ -172,14 +185,15 @@ static const int kInputChannelsChangedContext;
     }];
     _oscillator.audioDescription = audioController.audioDescription;
     _oscillator.channelIsMuted = YES;
-    
-    // Create an audio unit channel (a file player)
-    self.audioUnitPlayer = [[AEAudioUnitChannel alloc] initWithComponentDescription:AEAudioComponentDescriptionMake(kAudioUnitManufacturer_Apple, kAudioUnitType_Generator, kAudioUnitSubType_AudioFilePlayer)];
-    
+ 
     // Create a group for loop1, loop2 and oscillator
     _group = [_audioController createChannelGroup];
     [_audioController addChannels:@[_loop1, _loop2, _oscillator] toChannelGroup:_group];
+*/
+    // Create an audio unit channel (a file player)
+    self.audioUnitPlayer = [[AEAudioUnitChannel alloc] initWithComponentDescription:AEAudioComponentDescriptionMake(kAudioUnitManufacturer_Apple, kAudioUnitType_Generator, kAudioUnitSubType_AudioFilePlayer)];
     
+	
     // Finally, add the audio unit player
     [_audioController addChannels:@[_audioUnitPlayer]];
     
@@ -494,20 +508,77 @@ static inline float translate(float val, float min, float max) {
 
 #pragma mark - UI Control
 
-- (void)loop1SwitchChanged:(NSButton *)sender {
-    _loop1.channelIsMuted = (sender.state == NSOffState);
+// Create a group for loop1, loop2 and oscillator
+- (void) prepareChannelGroup
+{
+	if (_group == nil)
+	{
+		_group = [_audioController createChannelGroup];
+		[_audioController addChannels:@[self.drumLoop, self.organLoop] toChannelGroup:_group];
+	}
 }
 
+
+- (AEAudioFilePlayer *) drumLoop
+{
+	if (_loop1 == nil)
+	{
+		// Create the first loop player
+		_loop1 = [AEAudioFilePlayer audioFilePlayerWithURL:
+		[[NSBundle mainBundle] URLForResource:
+		@"Southern Rock Drums" withExtension:@"m4a"]
+		error:NULL];
+		
+		if (_loop1 != nil)
+		{
+			_loop1.volume = 1.0;
+			_loop1.channelIsMuted = YES;
+			_loop1.loop = YES;
+		}
+	}
+	
+	return _loop1;
+}
+
+- (AEAudioFilePlayer *) organLoop
+{
+	if (_loop2 == nil)
+	{
+		// Create the first loop player
+		_loop2 = [AEAudioFilePlayer audioFilePlayerWithURL:
+		[[NSBundle mainBundle] URLForResource:
+		@"Southern Rock Organ" withExtension:@"m4a"]
+		error:NULL];
+		
+		if (_loop2 != nil)
+		{
+			_loop2.volume = 1.0;
+			_loop2.channelIsMuted = YES;
+			_loop2.loop = YES;
+		}
+	}
+	
+	return _loop2;
+}
+
+
+
+- (void)loop1SwitchChanged:(NSButton *)sender {
+    self.drumLoop.channelIsMuted = (sender.state == NSOffState);
+}
+
+
+
 - (void)loop1VolumeChanged:(NSSlider *)sender {
-    _loop1.volume = sender.doubleValue;
+    self.drumLoop.volume = sender.floatValue;
 }
 
 - (void)loop2SwitchChanged:(NSButton *)sender {
-    _loop2.channelIsMuted = (sender.state == NSOffState);
+    self.organLoop.channelIsMuted = (sender.state == NSOffState);
 }
 
 - (void)loop2VolumeChanged:(NSSlider *)sender {
-    _loop2.volume = sender.doubleValue;
+    self.organLoop.volume = sender.floatValue;
 }
 
 - (void)oscillatorSwitchChanged:(NSButton *)sender {
