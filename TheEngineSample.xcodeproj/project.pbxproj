@@ -89,6 +89,8 @@
 		7F5D3B6F1C03404F008D0658 /* RMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B611C03404F008D0658 /* RMSTimerView.m */; };
 		7F9EEE161C0241230034DB62 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */; };
 		7F9EEE171C0244F30034DB62 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */; };
+		7FC38C8F1C03970300554C7A /* AERMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC38C8E1C03970300554C7A /* AERMSStereoView.m */; };
+		7FC38C901C03970300554C7A /* AERMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC38C8E1C03970300554C7A /* AERMSStereoView.m */; };
 		7FF8FA711C02349700AB4DDB /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF8FA6F1C02349700AB4DDB /* MainView.xib */; };
 /* End PBXBuildFile section */
 
@@ -219,6 +221,8 @@
 		7F5D3B611C03404F008D0658 /* RMSTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSTimerView.m; sourceTree = "<group>"; };
 		7F9EEE141C0241230034DB62 /* TPOscilloscopeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPOscilloscopeLayer.h; sourceTree = "<group>"; };
 		7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPOscilloscopeLayer.m; sourceTree = "<group>"; };
+		7FC38C8D1C03970300554C7A /* AERMSStereoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERMSStereoView.h; sourceTree = "<group>"; };
+		7FC38C8E1C03970300554C7A /* AERMSStereoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERMSStereoView.m; sourceTree = "<group>"; };
 		7FF8FA701C02349700AB4DDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "TheEngineSample/OS X/Base.lproj/MainView.xib"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -451,6 +455,8 @@
 		7F5D3B551C03404F008D0658 /* RMSViews */ = {
 			isa = PBXGroup;
 			children = (
+				7FC38C8D1C03970300554C7A /* AERMSStereoView.h */,
+				7FC38C8E1C03970300554C7A /* AERMSStereoView.m */,
 				7F5D3B561C03404F008D0658 /* AERMSBalanceView.h */,
 				7F5D3B571C03404F008D0658 /* AERMSBalanceView.m */,
 				7F5D3B601C03404F008D0658 /* RMSTimerView.h */,
@@ -627,6 +633,7 @@
 				4C50FEFF1B75883D00E56620 /* main.m in Sources */,
 				4C7C681116F1609800721E60 /* TPCircularBuffer.c in Sources */,
 				7F5D3B6E1C03404F008D0658 /* RMSTimerView.m in Sources */,
+				7FC38C8F1C03970300554C7A /* AERMSStereoView.m in Sources */,
 				4C2933A91BB2814400AAED25 /* AEParametricEqFilter.m in Sources */,
 				4C29339F1BB2814400AAED25 /* AEHighPassFilter.m in Sources */,
 				4C29339B1BB2814400AAED25 /* AEDistortionFilter.m in Sources */,
@@ -659,6 +666,7 @@
 				7F5D3B6F1C03404F008D0658 /* RMSTimerView.m in Sources */,
 				4C2933A41BB2814400AAED25 /* AELowPassFilter.m in Sources */,
 				7A8D23351B72B50A0054D2B2 /* AEMixerBuffer.m in Sources */,
+				7FC38C901C03970300554C7A /* AERMSStereoView.m in Sources */,
 				7A8D23341B72B4FB0054D2B2 /* AELimiterFilter.m in Sources */,
 				4C29339E1BB2814400AAED25 /* AEDynamicsProcessorFilter.m in Sources */,
 				7F5D3B671C03404F008D0658 /* RMSBalanceView.m in Sources */,

@@ -35,10 +35,11 @@ static CGContextRef NSGraphicsGetCurrentContext(void)
 		CGContextScaleCTM(context, -1.0, 1.0);
 	}
 
+/*
 	// White backing
 	[[NSColor whiteColor] set];
 	NSRectFill(rect);
-
+*/
 	// Black indicators < 0dB
     [[NSColor blackColor] set];
 	[self drawIndicators];
@@ -56,8 +57,8 @@ static CGContextRef NSGraphicsGetCurrentContext(void)
 
 	NSRect frame = self.bounds;
 	CGFloat w = frame.size.width;
+
 	frame.size.width = 1.0;
-	
 	NSRectFill(frame); // -inf
 
 	for (UInt32 n=0; n!=sizeof(DB)/sizeof(CGFloat); n++)

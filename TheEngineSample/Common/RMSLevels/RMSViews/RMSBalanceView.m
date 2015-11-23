@@ -81,6 +81,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+// Overwrite to set drawing direction
 - (RMSResultView *) resultViewL
 {
 	RMSResultView *view = [super resultViewL];
@@ -105,7 +106,7 @@
 {
 	if (mIndicator == nil)
 	{
-		// Create one point wide view
+		// Create 2 point wide view
 		NSRect frame = self.bounds;
 		frame.origin.x += 0.5*frame.size.width;
 		frame.origin.x -= 1.0;

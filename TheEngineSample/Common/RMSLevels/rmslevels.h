@@ -44,13 +44,11 @@ typedef struct rmsengine_t
 	double mHldM;
 	double mClpM;
 	
-	//
-	double mHldT; // hold time in samples
-	double mHldN; // hold time counter
-	double mClpN; // nominator, number of clipped samples
-	double mClpD; // denominator, number of samples tested
-	
-	double mHldR;
+	// counters
+	uint64_t mHldT; // hold time in samples
+	uint64_t mHldN; // hold time counter
+	uint64_t mClpN; // nominator, number of clipped samples
+	uint64_t mClpD; // denominator, number of samples tested
 }
 rmsengine_t;
 

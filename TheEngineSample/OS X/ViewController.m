@@ -85,16 +85,28 @@ static const int kInputChannelsChangedContext;
 		[_audioController addOutputReceiver:self.balanceView];
 		[self.balanceView startUpdating];
 	}
-/*
-	NSRect frame = _headerView.bounds;
-	frame.size.height *= 0.25;
-	AERMSBalanceView *rmsView = [[AERMSBalanceView alloc] initWithFrame:frame];
-
-	[_headerView addSubview:rmsView];
 	
-	[_audioController addOutputReceiver:rmsView];
-	[rmsView startUpdating];
-*/
+	if (self.drumLoopRMSView != nil)
+	{
+		[_audioController addOutputReceiver:self.drumLoopRMSView forChannel:self.drumLoop];
+		[self.drumLoopRMSView startUpdating];
+		
+	}
+
+	if (self.organLoopRMSView != nil)
+	{
+		[_audioController addOutputReceiver:self.organLoopRMSView forChannel:self.organLoop];
+		[self.organLoopRMSView startUpdating];
+		
+	}
+
+	if (self.oscillatorRMSView != nil)
+	{
+		[_audioController addOutputReceiver:self.oscillatorRMSView forChannel:self.oscillator];
+		[self.oscillatorRMSView startUpdating];
+		
+	}
+	
 /*
     self.outputOscilloscope = [[TPOscilloscopeLayer alloc] initWithAudioDescription:_audioController.audioDescription];
     _outputOscilloscope.frame = NSMakeRect(0, 10, _headerView.bounds.size.width, 80);
@@ -528,7 +540,7 @@ static inline float translate(float val, float min, float max) {
 	if (_group == nil)
 	{
 		_group = [_audioController createChannelGroup];
-		[_audioController addChannels:@[self.drumLoop, self.organLoop] toChannelGroup:_group];
+		[_audioController addChannels:@[self.drumLoop, self.organLoop, self.oscillator] toChannelGroup:_group];
 	}
 }
 
@@ -574,32 +586,68 @@ static inline float translate(float val, float min, float max) {
 }
 
 
+- (AEBlockChannel *) oscillator
+{
+	if (_oscillator != nil) return _oscillator;
+	
+    // Create a block-based channel, with an implementation of an oscillator
+    float oscillatorRate = 622.0/_audioController.audioDescription.mSampleRate;
 
-- (void)loop1SwitchChanged:(NSButton *)sender {
-    self.drumLoop.channelIsMuted = (sender.state == NSOffState);
+    __block float oscillatorPosition = 0;
+	self.oscillator = [AEBlockChannel channelWithBlock:^(
+		const AudioTimeStamp *time,
+		UInt32 frames,
+		AudioBufferList *audio
+	)
+	{
+		float *srcPtrL = (float *)audio->mBuffers[0].mData;
+		float *srcPtrR = (float *)audio->mBuffers[1].mData;
+		
+		for (; frames!=0; frames--)
+		{
+			float x = oscillatorPosition;
+			float y = sin(2.0*M_PI*x);
+			
+			*srcPtrL++ = y;
+			*srcPtrR++ = y;
+			
+			oscillatorPosition += oscillatorRate;
+			if ( oscillatorPosition >= 1.0 ) oscillatorPosition -= 1.0;
+		}
+	}];
+	
+	_oscillator.audioDescription = _audioController.audioDescription;
+	_oscillator.channelIsMuted = YES;
+	
+	return _oscillator;
 }
 
 
 
-- (void)loop1VolumeChanged:(NSSlider *)sender {
-    self.drumLoop.volume = sender.floatValue;
-}
 
-- (void)loop2SwitchChanged:(NSButton *)sender {
-    self.organLoop.channelIsMuted = (sender.state == NSOffState);
-}
+- (IBAction)loop1SwitchChanged:(NSButton *)sender
+{ self.drumLoop.channelIsMuted = (sender.state == NSOffState); }
 
-- (void)loop2VolumeChanged:(NSSlider *)sender {
-    self.organLoop.volume = sender.floatValue;
-}
+- (IBAction)loop1VolumeChanged:(NSSlider *)sender
+{ self.drumLoop.volume = sender.floatValue; }
 
-- (void)oscillatorSwitchChanged:(NSButton *)sender {
-    _oscillator.channelIsMuted = (sender.state == NSOffState);
-}
 
-- (void)oscillatorVolumeChanged:(NSButton *)sender {
-    _oscillator.volume = sender.doubleValue;
-}
+
+- (IBAction)loop2SwitchChanged:(NSButton *)sender
+{ self.organLoop.channelIsMuted = (sender.state == NSOffState); }
+
+- (IBAction)loop2VolumeChanged:(NSSlider *)sender
+{ self.organLoop.volume = sender.floatValue; }
+
+
+
+- (IBAction)oscillatorSwitchChanged:(NSButton *)sender
+{ _oscillator.channelIsMuted = (sender.state == NSOffState); }
+
+- (IBAction)oscillatorVolumeChanged:(NSSlider *)sender
+{ _oscillator.volume = sender.floatValue; }
+
+
 
 - (void)channelGroupSwitchChanged:(NSButton *)sender {
     BOOL isOn = (sender.state == NSOnState);

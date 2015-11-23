@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*  
-	AERMSBalanceView.h
+	AERMSStereoView.h
 
 	Created by 32BT on 22/11/15.
 	Copyright © 2015 32BT. All rights reserved.
@@ -10,6 +10,6 @@
 #import "RMSBalanceView.h"
 #import "TheAmazingAudioEngine.h"
 
-@interface AERMSBalanceView : RMSBalanceView <AEAudioReceiver>
+@interface AERMSStereoView : RMSStereoView <AEAudioReceiver>
 
 @end

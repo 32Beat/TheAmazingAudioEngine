@@ -11,6 +11,7 @@
 #import <Cocoa/Cocoa.h>
 #else
 #import <UIKit/UIKit.h>
+// Remap Cocoa to UIKit equivalents
 #define NSView 		UIView
 #define NSColor 	UIColor
 #define NSRect 		CGRect

@@ -15,6 +15,8 @@
 {
 	// Represented data
 	rmsresult_t mLevels;
+	
+	RMSIndexView *mIndexView;
 }
 @end
 
@@ -27,6 +29,38 @@
 	mLevels = levels;
 	[self setNeedsDisplayInRect:self.bounds];
 }
+
+////////////////////////////////////////////////////////////////////////////////
+
+- (NSRect) frameForIndexView
+{
+	NSRect frame = self.bounds;
+	frame.size.height *= 5.0/25.0;
+	return frame;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+- (RMSIndexView *) indexView
+{
+	if (mIndexView == nil)
+	{
+		// Compute top half of frame
+		NSRect frame = [self frameForIndexView];
+		
+		// Create levels view with default drawing direction
+		mIndexView = [[RMSIndexView alloc] initWithFrame:frame];
+		mIndexView.direction = self.direction;
+		
+		// Add as subview
+		[self addSubview:mIndexView];
+	}
+	
+	return mIndexView;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark

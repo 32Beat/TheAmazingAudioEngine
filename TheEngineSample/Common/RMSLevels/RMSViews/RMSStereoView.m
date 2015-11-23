@@ -25,8 +25,9 @@
 - (NSRect) frameForResultViewL
 {
 	NSRect frame = self.bounds;
-	frame.size.height *= 0.5;
 	frame.origin.y += frame.size.height;
+	frame.size.height = floor(0.5*frame.size.height);
+	frame.origin.y -= frame.size.height;
 	return frame;
 }
 
@@ -35,7 +36,7 @@
 - (NSRect) frameForResultViewR
 {
 	NSRect frame = self.bounds;
-	frame.size.height *= 0.5;
+	frame.size.height = floor(0.5*frame.size.height);
 	return frame;
 }
 

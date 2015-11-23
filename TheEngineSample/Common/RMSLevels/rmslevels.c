@@ -49,7 +49,7 @@ void RMSEngineSetResponse(rmsengine_t *engine, double milliSeconds, double sampl
 	
 	engine->mAvgM = 1.0 / (1.0 + decayRate);
 	engine->mMaxM = 1.0 / (1.0 + decayRate);
-	engine->mHldM = 1.0 / (1.0 + decayRate * 2);
+	engine->mHldM = 1.0 / (1.0 + decayRate * 4);
 	engine->mClpM = 0.0;
 	
 	// default hold time = 1.0 seconds
@@ -109,8 +109,8 @@ rmsresult_t RMSEngineFetchResult(const rmsengine_t *enginePtr)
 	if (enginePtr != NULL)
 	{
 		levels.mAvg = sqrt(enginePtr->mAvg);
-		levels.mMax = (enginePtr->mMax);
-		levels.mHld = (enginePtr->mHld);
+		levels.mMax = enginePtr->mMax;
+		levels.mHld = enginePtr->mHld;
 		levels.mClp = enginePtr->mClpD != 0.0 ?
 		enginePtr->mClpN / enginePtr->mClpD : 0.0;
 	}
