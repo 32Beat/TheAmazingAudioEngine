@@ -61,10 +61,15 @@ static const int kInputChannelsChangedContext;
 @end
 
 @implementation ViewController
-
+/*
 - (void)loadView {
     self.view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 400, 500)];
 }
+*/
+
+- (NSString *) nibName
+{ return @"MainView"; }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,14 +78,23 @@ static const int kInputChannelsChangedContext;
     _headerView.wantsLayer = YES;
     [self.view addSubview:_headerView];
 	
+	self.indexViewL.direction = eRMSViewDirectionW;
+	
+	if (self.balanceView != nil)
+	{
+		[_audioController addOutputReceiver:self.balanceView];
+		[self.balanceView startUpdating];
+	}
+/*
 	NSRect frame = _headerView.bounds;
+	frame.size.height *= 0.25;
 	AERMSBalanceView *rmsView = [[AERMSBalanceView alloc] initWithFrame:frame];
 
 	[_headerView addSubview:rmsView];
 	
 	[_audioController addOutputReceiver:rmsView];
 	[rmsView startUpdating];
-	
+*/
 /*
     self.outputOscilloscope = [[TPOscilloscopeLayer alloc] initWithAudioDescription:_audioController.audioDescription];
     _outputOscilloscope.frame = NSMakeRect(0, 10, _headerView.bounds.size.width, 80);
@@ -335,12 +349,12 @@ static inline float translate(float val, float min, float max) {
 
 - (void)viewWillAppear {
     [super viewWillAppear];
-    self.levelsTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateLevels:) userInfo:nil repeats:YES];
+//    self.levelsTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateLevels:) userInfo:nil repeats:YES];
 }
 
 -(void)viewWillDisappear {
     [super viewWillDisappear];
-    [_levelsTimer invalidate];
+//    [_levelsTimer invalidate];
     self.levelsTimer = nil;
 }
 
@@ -526,8 +540,7 @@ static inline float translate(float val, float min, float max) {
 		// Create the first loop player
 		_loop1 = [AEAudioFilePlayer audioFilePlayerWithURL:
 		[[NSBundle mainBundle] URLForResource:
-		@"Southern Rock Drums" withExtension:@"m4a"]
-		error:NULL];
+		@"Southern Rock Drums" withExtension:@"m4a"] error:NULL];
 		
 		if (_loop1 != nil)
 		{
@@ -547,8 +560,7 @@ static inline float translate(float val, float min, float max) {
 		// Create the first loop player
 		_loop2 = [AEAudioFilePlayer audioFilePlayerWithURL:
 		[[NSBundle mainBundle] URLForResource:
-		@"Southern Rock Organ" withExtension:@"m4a"]
-		error:NULL];
+		@"Southern Rock Organ" withExtension:@"m4a"] error:NULL];
 		
 		if (_loop2 != nil)
 		{

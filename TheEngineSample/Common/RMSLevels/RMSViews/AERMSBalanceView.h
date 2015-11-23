@@ -10,6 +10,6 @@
 #import "RMSBalanceView.h"
 #import "TheAmazingAudioEngine.h"
 
-@interface AERMSBalanceView : RMSBalanceView <AEAudioReceiver>
+@interface AERMSBalanceView : RMSStereoView <AEAudioReceiver>
 
 @end

@@ -23,6 +23,18 @@
 
 - (void) startUpdating
 {
+/*
+	dispatch_queue_t globalQueue = dispatch_get_global_queue \
+	(QOS_CLASS_USER_INTERACTIVE, DISPATCH_QUEUE_PRIORITY_HIGH);
+
+	dispatch_after(dispatch_time(0.0, 100000000), globalQueue,
+	^{
+		dispatch_async(dispatch_get_main_queue(),
+		^{ [self timerDidFire:nil]; });
+	});
+	
+	return;
+*/	
 	if (mTimer == nil)
 	{
 		// set timer to appr 25 updates per second

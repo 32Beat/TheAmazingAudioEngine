@@ -6,17 +6,20 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ViewController">
             <connections>
+                <outlet property="balanceView" destination="IJl-IC-2O2" id="S1n-mh-zDZ"/>
+                <outlet property="indexViewL" destination="NSf-fA-yJj" id="UHy-to-KnT"/>
+                <outlet property="indexViewR" destination="4X6-k6-7CL" id="JB2-OR-hng"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Mkv-uY-OhR"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="554" height="517"/>
+            <rect key="frame" x="0.0" y="0.0" width="500" height="517"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView id="IJl-IC-2O2">
-                    <rect key="frame" x="0.0" y="393" width="554" height="124"/>
+                <customView id="IJl-IC-2O2" customClass="AERMSBalanceView">
+                    <rect key="frame" x="20" y="465" width="460" height="25"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <animations/>
                 </customView>
@@ -30,14 +33,24 @@
                     </buttonCell>
                 </button>
                 <slider verticalHuggingPriority="750" id="KBg-jx-mlk">
-                    <rect key="frame" x="122" y="351" width="262" height="21"/>
+                    <rect key="frame" x="122" y="351" width="208" height="21"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <animations/>
                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="below" sliderType="linear" id="tY6-FG-gxt"/>
                 </slider>
+                <customView id="4X6-k6-7CL" customClass="RMSIndexView">
+                    <rect key="frame" x="250" y="455" width="230" height="10"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <animations/>
+                </customView>
+                <customView id="NSf-fA-yJj" customClass="RMSIndexView">
+                    <rect key="frame" x="20" y="455" width="230" height="10"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <animations/>
+                </customView>
             </subviews>
             <animations/>
-            <point key="canvasLocation" x="343" y="303.5"/>
+            <point key="canvasLocation" x="297" y="93.5"/>
         </customView>
     </objects>
 </document>

@@ -25,7 +25,7 @@ static CGContextRef NSGraphicsGetCurrentContext(void)
 @implementation RMSIndexView
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void)drawRect:(NSRect)dirtyRect
+- (void)drawRect:(NSRect)rect
 {
 	// Reverse direction if necessary
 	if (self.direction != 0)
@@ -35,6 +35,10 @@ static CGContextRef NSGraphicsGetCurrentContext(void)
 		CGContextScaleCTM(context, -1.0, 1.0);
 	}
 
+	// White backing
+	[[NSColor whiteColor] set];
+	NSRectFill(rect);
+
 	// Black indicators < 0dB
     [[NSColor blackColor] set];
 	[self drawIndicators];
@@ -42,19 +46,6 @@ static CGContextRef NSGraphicsGetCurrentContext(void)
 	// Red indicators >= 0dB
     [[NSColor redColor] set];
 	[self drawClipIndicators];
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
-//#define mINDICATOR(db) (0.8*pow(10, (0.4/20.0)*(db)))
-
-static double mINDICATOR(double db)
-{
-	double y = pow(10, db/20.0);
-	
-	y = pow(y/(y+1.0), (1.0/3.0));
-	
-	return y;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -71,7 +62,7 @@ static double mINDICATOR(double db)
 
 	for (UInt32 n=0; n!=sizeof(DB)/sizeof(CGFloat); n++)
 	{
-		frame.origin.x = floor(w*mINDICATOR(DB[n]));
+		frame.origin.x = floor(w*DB2DISPLAY(DB[n]));
 		NSRectFill(frame);
 	}
 }
@@ -88,7 +79,7 @@ static double mINDICATOR(double db)
 
 	for (UInt32 n=0; n!=sizeof(DB)/sizeof(CGFloat); n++)
 	{
-		frame.origin.x = floor(w*mINDICATOR(DB[n]));
+		frame.origin.x = floor(w*DB2DISPLAY(DB[n]));
 		NSRectFill(frame);
 	}
 }
