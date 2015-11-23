@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #import "RMSBalanceView.h"
+#import "RMSIndexView.h"
 
 
 @interface RMSBalanceView ()
@@ -19,6 +20,40 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 @implementation RMSBalanceView
+////////////////////////////////////////////////////////////////////////////////
+
+- (void) timerDidFire:(NSTimer *)timer
+{
+	[self updateLevels];
+	[self updateBalance];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+- (void) updateBalance
+{
+	double L = self.enginePtrL ? self.enginePtrL->mAvg : 0.0;
+	double R = self.enginePtrR ? self.enginePtrR->mAvg : 0.0;
+
+	[self setBalance:R-L];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+- (void) setBalance:(double)balance
+{
+	// Compute offset for display
+	double m = RMS2DISPLAY(fabs(balance));
+	if (balance < 0.0) m = -m;
+	
+	NSRect frame = self.bounds;
+	frame.origin.x += 0.5*frame.size.width;
+	frame.origin.x += 0.5*frame.size.width * m;
+	frame.origin.x -= 1.0;
+	frame.size.width = 2.0;
+	self.balanceIndicator.frame = frame;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 - (NSRect) frameForResultViewL
@@ -51,18 +86,6 @@
 	RMSResultView *view = [super resultViewL];
 	view.direction = eRMSViewDirectionW;
 	return view;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
-- (void) setBalance:(double)balance
-{
-	NSRect frame = self.bounds;
-	frame.origin.x += 0.5*frame.size.width;
-	frame.origin.x += 0.5*frame.size.width * balance;
-	frame.origin.x -= 1.0;
-	frame.size.width = 2.0;
-	self.balanceIndicator.frame = frame;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

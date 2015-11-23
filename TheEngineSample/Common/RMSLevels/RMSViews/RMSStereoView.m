@@ -81,6 +81,13 @@
 
 - (void) timerDidFire:(NSTimer *)timer
 {
+	[self updateLevels];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+- (void) updateLevels
+{
 	rmsresult_t L = RMSEngineFetchResult(self.enginePtrL);
 	rmsresult_t R = RMSEngineFetchResult(self.enginePtrR);
 	

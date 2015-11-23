@@ -18,6 +18,19 @@
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////
+/*
+	
+*/
+static inline double DB2RMS(double x)
+{ return pow(10, x/20.0); }
+
+static inline double RMS2DISPLAY(double x)
+{ return pow(x/(x+1.0), (1.0/3.0)); }
+
+static inline double DB2DISPLAY(double x)
+{ return RMS2DISPLAY(DB2RMS(x)); }
+
+////////////////////////////////////////////////////////////////////////////////
 
 @interface RMSIndexView : NSView
 @property (nonatomic, assign) NSUInteger direction;

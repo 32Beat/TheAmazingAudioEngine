@@ -10,5 +10,9 @@
 #import "RMSStereoView.h"
 
 @interface RMSBalanceView : RMSStereoView
+
 - (NSView *) balanceIndicator;
+
+- (void) updateBalance;
+
 @end

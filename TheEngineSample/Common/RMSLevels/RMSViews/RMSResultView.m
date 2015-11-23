@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #import "RMSResultView.h"
+#import "RMSIndexView.h"
 
 
 @interface RMSResultView ()
@@ -106,7 +107,7 @@
 	NSRect bounds = self.bounds;
 
 	// Adjust for display scale
-	ratio = pow(ratio/(ratio+1.0), (1.0/3.0));
+	ratio = RMS2DISPLAY(ratio);
 	
 	if (ratio < 1.0)
 	{

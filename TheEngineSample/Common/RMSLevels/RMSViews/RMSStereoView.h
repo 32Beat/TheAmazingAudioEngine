@@ -15,10 +15,13 @@
 @property (nonatomic, assign) const rmsengine_t *enginePtrL;
 @property (nonatomic, assign) const rmsengine_t *enginePtrR;
 
+- (NSRect) frameForResultViewL;
+- (NSRect) frameForResultViewR;
+
 - (RMSResultView *) resultViewL;
 - (RMSResultView *) resultViewR;
 
-- (NSRect) frameForResultViewL;
-- (NSRect) frameForResultViewR;
+// Copy rmsresults from engine to views
+- (void) updateLevels;
 
 @end

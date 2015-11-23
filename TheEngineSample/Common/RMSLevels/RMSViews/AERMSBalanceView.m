@@ -92,29 +92,9 @@ static void audioCallback(__unsafe_unretained AERMSBalanceView *THIS,
 {
 	self.enginePtrL = &self->mEngineL;
 	self.enginePtrR = &self->mEngineR;
-	[super timerDidFire:timer];
-}
-
-////////////////////////////////////////////////////////////////////////////////
-#pragma mark
-////////////////////////////////////////////////////////////////////////////////
-
-- (void) setBalance:(double)balance
-{
-	NSRect frame = self.bounds;
-	frame.origin.x += 0.5*frame.size.width;
-	frame.origin.x += 0.5*frame.size.width * balance;
-	frame.origin.x -= 1.0;
-	frame.size.width = 2.0;
-	self.balanceIndicator.frame = frame;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
-- (void) drawRect:(NSRect)rect
-{
-	[[NSColor blackColor] set];
-	NSRectFill(rect);
+	//[super timerDidFire:timer];
+	[self updateLevels];
+	[self updateBalance];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
