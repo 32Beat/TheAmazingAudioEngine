@@ -166,7 +166,11 @@
 	frame.size.width -= frame.origin.x;
 	NSRectFill(frame);
 
+	if (levels.mHld < 1.0)
 	[[self hldColor] set];
+	else
+	[[self clpColor] set];
+	
 	frame.origin.x += frame.size.width;
 	frame.size.width = round(W * RMS2DISPLAY(levels.mHld));
 	frame.size.width -= frame.origin.x;

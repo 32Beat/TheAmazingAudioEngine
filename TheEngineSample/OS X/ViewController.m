@@ -16,7 +16,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "AERMSStereoLevels.h"
-#import "AERMSBalanceView.h"
 
 #define checkResult(result,operation) (_checkResult((result),(operation),strrchr(__FILE__, '/')+1,__LINE__))
 static inline BOOL _checkResult(OSStatus result, const char *operation, const char* file, int line) {
@@ -60,6 +59,9 @@ static const int kInputChannelsChangedContext;
 @property (nonatomic, strong) NSButton *recordButton;
 
 @property (nonatomic) AERMSStereoLevels *stereoLevels;
+@property (nonatomic) AERMSStereoLevels *drumLoopLevels;
+@property (nonatomic) AERMSStereoLevels *organLoopLevels;
+@property (nonatomic) AERMSStereoLevels *oscillatorLevels;
 
 @end
 
@@ -77,6 +79,28 @@ static const int kInputChannelsChangedContext;
 	{ _stereoLevels = [AERMSStereoLevels new]; }
 	return _stereoLevels;
 }
+
+- (AERMSStereoLevels *) drumLoopLevels
+{
+	if (_drumLoopLevels == nil)
+	{ _drumLoopLevels = [AERMSStereoLevels new]; }
+	return _drumLoopLevels;
+}
+
+- (AERMSStereoLevels *) organLoopLevels
+{
+	if (_organLoopLevels == nil)
+	{ _organLoopLevels = [AERMSStereoLevels new]; }
+	return _organLoopLevels;
+}
+
+- (AERMSStereoLevels *) oscillatorLevels
+{
+	if (_oscillatorLevels == nil)
+	{ _oscillatorLevels = [AERMSStereoLevels new]; }
+	return _oscillatorLevels;
+}
+
 
 - (NSString *) nibName
 { return @"MainView"; }
@@ -96,30 +120,34 @@ static const int kInputChannelsChangedContext;
 		[_audioController addOutputReceiver:self.stereoLevels];
 		[self.stereoLevels setView:self.balanceView];
 		[self.stereoLevels startUpdating];
-		
 	}
-/*
+
 	if (self.drumLoopRMSView != nil)
 	{
-		[_audioController addOutputReceiver:self.drumLoopRMSView forChannel:self.drumLoop];
-		[self.drumLoopRMSView startUpdating];
-		
+		[_audioController addOutputReceiver:self.drumLoopLevels
+			forChannel:self.drumLoop];
+		[self.drumLoopLevels setView:self.drumLoopRMSView];
+		[self.drumLoopLevels startUpdating];
 	}
 
 	if (self.organLoopRMSView != nil)
 	{
-		[_audioController addOutputReceiver:self.organLoopRMSView forChannel:self.organLoop];
-		[self.organLoopRMSView startUpdating];
+		[_audioController addOutputReceiver:self.organLoopLevels
+			forChannel:self.organLoop];
+		[self.organLoopLevels setView:self.organLoopRMSView];
+		[self.organLoopLevels startUpdating];
 		
 	}
 
 	if (self.oscillatorRMSView != nil)
 	{
-		[_audioController addOutputReceiver:self.oscillatorRMSView forChannel:self.oscillator];
-		[self.oscillatorRMSView startUpdating];
+		[_audioController addOutputReceiver:self.oscillatorLevels
+			forChannel:self.oscillator];
+		[self.oscillatorLevels setView:self.oscillatorRMSView];
+		[self.oscillatorLevels startUpdating];
 		
 	}
-*/
+
 /*
     self.outputOscilloscope = [[TPOscilloscopeLayer alloc] initWithAudioDescription:_audioController.audioDescription];
     _outputOscilloscope.frame = NSMakeRect(0, 10, _headerView.bounds.size.width, 80);

@@ -75,8 +75,6 @@
 		7AFFB76C1B75307500892749 /* AERecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C680216F1609800721E60 /* AERecorder.m */; };
 		7F5D3B621C03404F008D0658 /* rmslevels.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B531C03404F008D0658 /* rmslevels.c */; };
 		7F5D3B631C03404F008D0658 /* rmslevels.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B531C03404F008D0658 /* rmslevels.c */; };
-		7F5D3B641C03404F008D0658 /* AERMSBalanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B571C03404F008D0658 /* AERMSBalanceView.m */; };
-		7F5D3B651C03404F008D0658 /* AERMSBalanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B571C03404F008D0658 /* AERMSBalanceView.m */; };
 		7F5D3B661C03404F008D0658 /* RMSBalanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B591C03404F008D0658 /* RMSBalanceView.m */; };
 		7F5D3B671C03404F008D0658 /* RMSBalanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B591C03404F008D0658 /* RMSBalanceView.m */; };
 		7F5D3B681C03404F008D0658 /* RMSIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B5B1C03404F008D0658 /* RMSIndexView.m */; };
@@ -85,16 +83,12 @@
 		7F5D3B6B1C03404F008D0658 /* RMSResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B5D1C03404F008D0658 /* RMSResultView.m */; };
 		7F5D3B6C1C03404F008D0658 /* RMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B5F1C03404F008D0658 /* RMSStereoView.m */; };
 		7F5D3B6D1C03404F008D0658 /* RMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B5F1C03404F008D0658 /* RMSStereoView.m */; };
-		7F5D3B6E1C03404F008D0658 /* RMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B611C03404F008D0658 /* RMSTimerView.m */; };
-		7F5D3B6F1C03404F008D0658 /* RMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B611C03404F008D0658 /* RMSTimerView.m */; };
 		7F67C1881C0411F100F4E9F0 /* RMSTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C1871C0411F100F4E9F0 /* RMSTimer.m */; };
 		7F67C1891C0411F100F4E9F0 /* RMSTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C1871C0411F100F4E9F0 /* RMSTimer.m */; };
 		7F9EEE161C0241230034DB62 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */; };
 		7F9EEE171C0244F30034DB62 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */; };
 		7FA834681C042F0700E0BA99 /* AERMSStereoLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA834671C042F0700E0BA99 /* AERMSStereoLevels.m */; };
 		7FA834691C042F0700E0BA99 /* AERMSStereoLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA834671C042F0700E0BA99 /* AERMSStereoLevels.m */; };
-		7FC38C8F1C03970300554C7A /* AERMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC38C8E1C03970300554C7A /* AERMSStereoView.m */; };
-		7FC38C901C03970300554C7A /* AERMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC38C8E1C03970300554C7A /* AERMSStereoView.m */; };
 		7FF8FA711C02349700AB4DDB /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF8FA6F1C02349700AB4DDB /* MainView.xib */; };
 /* End PBXBuildFile section */
 
@@ -211,8 +205,6 @@
 		7A8D22F51B72AF5C0054D2B2 /* TheEngineSampleOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheEngineSampleOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F5D3B531C03404F008D0658 /* rmslevels.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rmslevels.c; sourceTree = "<group>"; };
 		7F5D3B541C03404F008D0658 /* rmslevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rmslevels.h; sourceTree = "<group>"; };
-		7F5D3B561C03404F008D0658 /* AERMSBalanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERMSBalanceView.h; sourceTree = "<group>"; };
-		7F5D3B571C03404F008D0658 /* AERMSBalanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERMSBalanceView.m; sourceTree = "<group>"; };
 		7F5D3B581C03404F008D0658 /* RMSBalanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSBalanceView.h; sourceTree = "<group>"; };
 		7F5D3B591C03404F008D0658 /* RMSBalanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSBalanceView.m; sourceTree = "<group>"; };
 		7F5D3B5A1C03404F008D0658 /* RMSIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSIndexView.h; sourceTree = "<group>"; };
@@ -221,16 +213,12 @@
 		7F5D3B5D1C03404F008D0658 /* RMSResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSResultView.m; sourceTree = "<group>"; };
 		7F5D3B5E1C03404F008D0658 /* RMSStereoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSStereoView.h; sourceTree = "<group>"; };
 		7F5D3B5F1C03404F008D0658 /* RMSStereoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSStereoView.m; sourceTree = "<group>"; };
-		7F5D3B601C03404F008D0658 /* RMSTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSTimerView.h; sourceTree = "<group>"; };
-		7F5D3B611C03404F008D0658 /* RMSTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSTimerView.m; sourceTree = "<group>"; };
 		7F67C1861C0411F100F4E9F0 /* RMSTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSTimer.h; sourceTree = "<group>"; };
 		7F67C1871C0411F100F4E9F0 /* RMSTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSTimer.m; sourceTree = "<group>"; };
 		7F9EEE141C0241230034DB62 /* TPOscilloscopeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPOscilloscopeLayer.h; sourceTree = "<group>"; };
 		7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPOscilloscopeLayer.m; sourceTree = "<group>"; };
 		7FA834661C042F0700E0BA99 /* AERMSStereoLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERMSStereoLevels.h; sourceTree = "<group>"; };
 		7FA834671C042F0700E0BA99 /* AERMSStereoLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERMSStereoLevels.m; sourceTree = "<group>"; };
-		7FC38C8D1C03970300554C7A /* AERMSStereoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERMSStereoView.h; sourceTree = "<group>"; };
-		7FC38C8E1C03970300554C7A /* AERMSStereoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERMSStereoView.m; sourceTree = "<group>"; };
 		7FF8FA701C02349700AB4DDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "TheEngineSample/OS X/Base.lproj/MainView.xib"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -467,12 +455,6 @@
 		7F5D3B551C03404F008D0658 /* RMSViews */ = {
 			isa = PBXGroup;
 			children = (
-				7FC38C8D1C03970300554C7A /* AERMSStereoView.h */,
-				7FC38C8E1C03970300554C7A /* AERMSStereoView.m */,
-				7F5D3B561C03404F008D0658 /* AERMSBalanceView.h */,
-				7F5D3B571C03404F008D0658 /* AERMSBalanceView.m */,
-				7F5D3B601C03404F008D0658 /* RMSTimerView.h */,
-				7F5D3B611C03404F008D0658 /* RMSTimerView.m */,
 				7F5D3B5E1C03404F008D0658 /* RMSStereoView.h */,
 				7F5D3B5F1C03404F008D0658 /* RMSStereoView.m */,
 				7F5D3B581C03404F008D0658 /* RMSBalanceView.h */,
@@ -635,7 +617,6 @@
 				7F5D3B661C03404F008D0658 /* RMSBalanceView.m in Sources */,
 				4C7C680C16F1609800721E60 /* AEMixerBuffer.m in Sources */,
 				4C2933A31BB2814400AAED25 /* AELowPassFilter.m in Sources */,
-				7F5D3B641C03404F008D0658 /* AERMSBalanceView.m in Sources */,
 				4C50FF011B75883D00E56620 /* ViewController.m in Sources */,
 				4C7C680D16F1609800721E60 /* AEPlaythroughChannel.m in Sources */,
 				4C7C680E16F1609800721E60 /* AERecorder.m in Sources */,
@@ -644,8 +625,6 @@
 				4C7C681016F1609800721E60 /* TPCircularBuffer+AudioBufferList.c in Sources */,
 				4C50FEFF1B75883D00E56620 /* main.m in Sources */,
 				4C7C681116F1609800721E60 /* TPCircularBuffer.c in Sources */,
-				7F5D3B6E1C03404F008D0658 /* RMSTimerView.m in Sources */,
-				7FC38C8F1C03970300554C7A /* AERMSStereoView.m in Sources */,
 				4C2933A91BB2814400AAED25 /* AEParametricEqFilter.m in Sources */,
 				4C29339F1BB2814400AAED25 /* AEHighPassFilter.m in Sources */,
 				7FA834681C042F0700E0BA99 /* AERMSStereoLevels.m in Sources */,
@@ -666,7 +645,6 @@
 				4C2933A21BB2814400AAED25 /* AEHighShelfFilter.m in Sources */,
 				4C2933A61BB2814400AAED25 /* AELowShelfFilter.m in Sources */,
 				7F5D3B691C03404F008D0658 /* RMSIndexView.m in Sources */,
-				7F5D3B651C03404F008D0658 /* AERMSBalanceView.m in Sources */,
 				4C2933AC1BB2814400AAED25 /* AEPeakLimiterFilter.m in Sources */,
 				7A532D2B1B7C6FA8006056DB /* AEPlaythroughChannel.m in Sources */,
 				7F9EEE171C0244F30034DB62 /* TPOscilloscopeLayer.m in Sources */,
@@ -679,10 +657,8 @@
 				7AFFB76C1B75307500892749 /* AERecorder.m in Sources */,
 				7A8D23361B72B5170054D2B2 /* TPCircularBuffer+AudioBufferList.c in Sources */,
 				7A8D23371B72B5170054D2B2 /* TPCircularBuffer.c in Sources */,
-				7F5D3B6F1C03404F008D0658 /* RMSTimerView.m in Sources */,
 				4C2933A41BB2814400AAED25 /* AELowPassFilter.m in Sources */,
 				7A8D23351B72B50A0054D2B2 /* AEMixerBuffer.m in Sources */,
-				7FC38C901C03970300554C7A /* AERMSStereoView.m in Sources */,
 				7A8D23341B72B4FB0054D2B2 /* AELimiterFilter.m in Sources */,
 				4C29339E1BB2814400AAED25 /* AEDynamicsProcessorFilter.m in Sources */,
 				7F5D3B671C03404F008D0658 /* RMSBalanceView.m in Sources */,

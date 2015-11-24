@@ -109,12 +109,7 @@ static void audioCallback(__unsafe_unretained AERMSStereoLevels *THIS,
 { [RMSTimer removeRMSTimerObserver:self]; }
 
 - (void) globalRMSTimerDidFire
-{
-	if (mView != nil)
-	{
-		[mView updateLevels];
-	}
-}
+{ [mView updateLevels]; }
 
 ////////////////////////////////////////////////////////////////////////////////
 @end

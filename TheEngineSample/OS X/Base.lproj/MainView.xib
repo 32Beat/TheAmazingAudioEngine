@@ -25,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="500" height="639"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView id="IJl-IC-2O2" customClass="AERMSBalanceView">
+                <customView id="IJl-IC-2O2" customClass="RMSBalanceView">
                     <rect key="frame" x="20" y="599" width="460" height="20"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <animations/>
@@ -71,12 +71,12 @@
                                     <action selector="oscillatorSwitchChanged:" target="-2" id="Mdh-lr-QQF"/>
                                 </connections>
                             </button>
-                            <customView id="zn9-6T-Lhb" customClass="AERMSStereoView">
+                            <customView id="zn9-6T-Lhb" customClass="RMSStereoView">
                                 <rect key="frame" x="108" y="215" width="200" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <animations/>
                             </customView>
-                            <customView id="KgC-NA-P7c" customClass="AERMSStereoView">
+                            <customView id="KgC-NA-P7c" customClass="RMSStereoView">
                                 <rect key="frame" x="108" y="145" width="200" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -122,7 +122,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <animations/>
                             </customView>
-                            <customView id="hvE-cV-4kQ" customClass="AERMSStereoView">
+                            <customView id="hvE-cV-4kQ" customClass="RMSStereoView">
                                 <rect key="frame" x="108" y="75" width="200" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <animations/>
