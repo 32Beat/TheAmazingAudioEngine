@@ -83,6 +83,8 @@
 		7F5D3B6B1C03404F008D0658 /* RMSResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B5D1C03404F008D0658 /* RMSResultView.m */; };
 		7F5D3B6C1C03404F008D0658 /* RMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B5F1C03404F008D0658 /* RMSStereoView.m */; };
 		7F5D3B6D1C03404F008D0658 /* RMSStereoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D3B5F1C03404F008D0658 /* RMSStereoView.m */; };
+		7F6628AC1C04902C00A0141B /* ChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F6628AA1C04902C00A0141B /* ChannelViewController.m */; };
+		7F6628AD1C04902C00A0141B /* ChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F6628AB1C04902C00A0141B /* ChannelViewController.xib */; };
 		7F67C1881C0411F100F4E9F0 /* RMSTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C1871C0411F100F4E9F0 /* RMSTimer.m */; };
 		7F67C1891C0411F100F4E9F0 /* RMSTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C1871C0411F100F4E9F0 /* RMSTimer.m */; };
 		7F9EEE161C0241230034DB62 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */; };
@@ -213,6 +215,9 @@
 		7F5D3B5D1C03404F008D0658 /* RMSResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSResultView.m; sourceTree = "<group>"; };
 		7F5D3B5E1C03404F008D0658 /* RMSStereoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSStereoView.h; sourceTree = "<group>"; };
 		7F5D3B5F1C03404F008D0658 /* RMSStereoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSStereoView.m; sourceTree = "<group>"; };
+		7F6628A91C04902C00A0141B /* ChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChannelViewController.h; path = "TheEngineSample/OS X/ChannelViewController.h"; sourceTree = SOURCE_ROOT; };
+		7F6628AA1C04902C00A0141B /* ChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChannelViewController.m; path = "TheEngineSample/OS X/ChannelViewController.m"; sourceTree = SOURCE_ROOT; };
+		7F6628AB1C04902C00A0141B /* ChannelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChannelViewController.xib; path = "TheEngineSample/OS X/ChannelViewController.xib"; sourceTree = SOURCE_ROOT; };
 		7F67C1861C0411F100F4E9F0 /* RMSTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSTimer.h; sourceTree = "<group>"; };
 		7F67C1871C0411F100F4E9F0 /* RMSTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSTimer.m; sourceTree = "<group>"; };
 		7F9EEE141C0241230034DB62 /* TPOscilloscopeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPOscilloscopeLayer.h; sourceTree = "<group>"; };
@@ -423,6 +428,9 @@
 				4C50FF2D1B75936000E56620 /* ViewController.m */,
 				7FF8FA6F1C02349700AB4DDB /* MainView.xib */,
 				7A8D22F71B72AF5C0054D2B2 /* Supporting Files */,
+				7F6628A91C04902C00A0141B /* ChannelViewController.h */,
+				7F6628AA1C04902C00A0141B /* ChannelViewController.m */,
+				7F6628AB1C04902C00A0141B /* ChannelViewController.xib */,
 			);
 			path = TheEngineSampleOSX;
 			sourceTree = "<group>";
@@ -593,6 +601,7 @@
 				7FF8FA711C02349700AB4DDB /* MainView.xib in Resources */,
 				4C50FF161B758B5B00E56620 /* Southern Rock Organ.m4a in Resources */,
 				4C50FF361B75937300E56620 /* MainMenu.xib in Resources */,
+				7F6628AD1C04902C00A0141B /* ChannelViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +661,7 @@
 				4C2933B01BB2814400AAED25 /* AEVarispeedFilter.m in Sources */,
 				4C50FF331B75936000E56620 /* ViewController.m in Sources */,
 				7F67C1891C0411F100F4E9F0 /* RMSTimer.m in Sources */,
+				7F6628AC1C04902C00A0141B /* ChannelViewController.m in Sources */,
 				4C50FF321B75936000E56620 /* main.m in Sources */,
 				4C29339A1BB2814400AAED25 /* AEDelayFilter.m in Sources */,
 				7AFFB76C1B75307500892749 /* AERecorder.m in Sources */,

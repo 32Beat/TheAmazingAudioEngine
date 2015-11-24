@@ -15,6 +15,7 @@
 #import "AERecorder.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import "ChannelViewController.h"
 #import "AERMSStereoLevels.h"
 
 #define checkResult(result,operation) (_checkResult((result),(operation),strrchr(__FILE__, '/')+1,__LINE__))
@@ -58,10 +59,15 @@ static const int kInputChannelsChangedContext;
 @property (nonatomic, strong) NSButton *playButton;
 @property (nonatomic, strong) NSButton *recordButton;
 
-@property (nonatomic) AERMSStereoLevels *stereoLevels;
-@property (nonatomic) AERMSStereoLevels *drumLoopLevels;
-@property (nonatomic) AERMSStereoLevels *organLoopLevels;
-@property (nonatomic) AERMSStereoLevels *oscillatorLevels;
+@property (nonatomic) ChannelViewController *drumLoopVC;
+@property (nonatomic) ChannelViewController *organLoopVC;
+@property (nonatomic) ChannelViewController *oscillatorVC;
+
+
+@property (nonatomic) IBOutlet AERMSStereoLevels *stereoLevels;
+@property (nonatomic) IBOutlet AERMSStereoLevels *drumLoopLevels;
+@property (nonatomic) IBOutlet AERMSStereoLevels *organLoopLevels;
+@property (nonatomic) IBOutlet AERMSStereoLevels *oscillatorLevels;
 
 @end
 
@@ -72,7 +78,7 @@ static const int kInputChannelsChangedContext;
 }
 */
 
-
+/*
 - (AERMSStereoLevels *) stereoLevels
 {
 	if (_stereoLevels == nil)
@@ -86,7 +92,7 @@ static const int kInputChannelsChangedContext;
 	{ _drumLoopLevels = [AERMSStereoLevels new]; }
 	return _drumLoopLevels;
 }
-
+*/
 - (AERMSStereoLevels *) organLoopLevels
 {
 	if (_organLoopLevels == nil)
@@ -99,6 +105,22 @@ static const int kInputChannelsChangedContext;
 	if (_oscillatorLevels == nil)
 	{ _oscillatorLevels = [AERMSStereoLevels new]; }
 	return _oscillatorLevels;
+}
+
+
+- (void) addChannelVC:(ChannelViewController *)channelVC
+{
+	NSRect srcR = channelVC.view.frame;
+	NSRect dstR = self.groupView.bounds;
+	srcR.origin.y = dstR.origin.y+dstR.size.height;
+	
+	for(NSView *view in self.groupView.subviews)
+	{ srcR.origin.y -= view.frame.size.height; }
+	
+	srcR.origin.y -= srcR.size.height;
+	
+	channelVC.view.frame = srcR;
+	[self.groupView addSubview:channelVC.view];
 }
 
 
@@ -115,38 +137,33 @@ static const int kInputChannelsChangedContext;
 	
 	self.indexViewL.direction = eRMSViewDirectionW;
 	
-	if (self.balanceView != nil)
+	if (self.drumLoop != nil)
 	{
-		[_audioController addOutputReceiver:self.stereoLevels];
-		[self.stereoLevels setView:self.balanceView];
-		[self.stereoLevels startUpdating];
+		self.drumLoopVC = [[ChannelViewController alloc]
+		initWithAudioController:_audioController channel:self.drumLoop];
+
+		[self addChannelVC:self.drumLoopVC];
 	}
 
-	if (self.drumLoopRMSView != nil)
+	if (self.organLoop != nil)
 	{
-		[_audioController addOutputReceiver:self.drumLoopLevels
-			forChannel:self.drumLoop];
-		[self.drumLoopLevels setView:self.drumLoopRMSView];
-		[self.drumLoopLevels startUpdating];
-	}
+		self.organLoopVC = [[ChannelViewController alloc]
+		initWithAudioController:_audioController channel:self.organLoop];
 
-	if (self.organLoopRMSView != nil)
-	{
-		[_audioController addOutputReceiver:self.organLoopLevels
-			forChannel:self.organLoop];
-		[self.organLoopLevels setView:self.organLoopRMSView];
-		[self.organLoopLevels startUpdating];
-		
+		[self addChannelVC:self.organLoopVC];
 	}
+	
 
-	if (self.oscillatorRMSView != nil)
+	if (self.oscillator != nil)
 	{
-		[_audioController addOutputReceiver:self.oscillatorLevels
-			forChannel:self.oscillator];
-		[self.oscillatorLevels setView:self.oscillatorRMSView];
-		[self.oscillatorLevels startUpdating];
-		
+		self.oscillatorVC = [[ChannelViewController alloc]
+		initWithAudioController:_audioController channel:self.oscillator];
+
+		[self addChannelVC:self.oscillatorVC];
 	}
+	
+	return;
+	
 
 /*
     self.outputOscilloscope = [[TPOscilloscopeLayer alloc] initWithAudioDescription:_audioController.audioDescription];

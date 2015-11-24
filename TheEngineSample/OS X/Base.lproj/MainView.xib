@@ -8,14 +8,11 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ViewController">
             <connections>
                 <outlet property="balanceView" destination="IJl-IC-2O2" id="S1n-mh-zDZ"/>
-                <outlet property="drumLoopButton" destination="Vh4-1o-nXy" id="y3f-Al-29c"/>
-                <outlet property="drumLoopRMSView" destination="zn9-6T-Lhb" id="AoL-Jq-aSR"/>
+                <outlet property="drumLoopLevels" destination="D0z-In-EoE" id="F7Q-D0-cYc"/>
+                <outlet property="groupView" destination="2lr-GW-lps" id="wQH-Tp-0VQ"/>
                 <outlet property="indexViewL" destination="NSf-fA-yJj" id="UHy-to-KnT"/>
                 <outlet property="indexViewR" destination="4X6-k6-7CL" id="JB2-OR-hng"/>
-                <outlet property="organLoopButton" destination="Bgy-sz-95s" id="5wl-hf-uD5"/>
-                <outlet property="organLoopRMSView" destination="KgC-NA-P7c" id="tpg-aA-u8w"/>
-                <outlet property="oscillatorButton" destination="kAe-F0-QCX" id="u8L-dI-vEw"/>
-                <outlet property="oscillatorRMSView" destination="hvE-cV-4kQ" id="1qg-FC-QLs"/>
+                <outlet property="stereoLevels" destination="OZi-ZS-09R" id="2LX-vN-jAp"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Mkv-uY-OhR"/>
             </connections>
         </customObject>
@@ -41,121 +38,11 @@
                     <animations/>
                 </customView>
                 <box autoresizesSubviews="NO" title="Group" borderType="line" id="gtL-Rc-BeD">
-                    <rect key="frame" x="17" y="311" width="466" height="270"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <rect key="frame" x="17" y="267" width="466" height="314"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="2lr-GW-lps">
-                        <rect key="frame" x="1" y="1" width="464" height="254"/>
+                        <rect key="frame" x="1" y="1" width="464" height="298"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button verticalHuggingPriority="750" id="Vh4-1o-nXy">
-                                <rect key="frame" x="20" y="210" width="80" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <animations/>
-                                <buttonCell key="cell" type="square" title="Drums" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qEf-Kr-9e5">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="loop1SwitchChanged:" target="-2" id="ZJy-aV-Vb4"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" id="kAe-F0-QCX">
-                                <rect key="frame" x="20" y="70" width="80" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <animations/>
-                                <buttonCell key="cell" type="square" title="Oscillator" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cTG-K2-em6">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="oscillatorSwitchChanged:" target="-2" id="Mdh-lr-QQF"/>
-                                </connections>
-                            </button>
-                            <customView id="zn9-6T-Lhb" customClass="RMSStereoView">
-                                <rect key="frame" x="108" y="215" width="200" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                            </customView>
-                            <customView id="KgC-NA-P7c" customClass="RMSStereoView">
-                                <rect key="frame" x="108" y="145" width="200" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                            </customView>
-                            <button verticalHuggingPriority="750" id="Bgy-sz-95s">
-                                <rect key="frame" x="20" y="140" width="80" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <animations/>
-                                <buttonCell key="cell" type="square" title="Organ" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0pB-Ix-ITc">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="loop2SwitchChanged:" target="-2" id="Rdk-5u-oUf"/>
-                                </connections>
-                            </button>
-                            <slider verticalHuggingPriority="750" id="yf1-9L-GIc">
-                                <rect key="frame" x="18" y="107" width="292" height="27"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1.2" doubleValue="1" tickMarkPosition="below" numberOfTickMarks="7" sliderType="linear" id="tSo-hE-bFb"/>
-                                <connections>
-                                    <action selector="loop2VolumeChanged:" target="-2" id="O9Q-Bu-AeW"/>
-                                </connections>
-                            </slider>
-                            <customView id="K9R-KY-aKr" customClass="RMSIndexView">
-                                <rect key="frame" x="108" y="236" width="200" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                            </customView>
-                            <customView id="S0E-ac-Ope" customClass="RMSIndexView">
-                                <rect key="frame" x="108" y="210" width="200" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                            </customView>
-                            <customView id="fEP-je-S05" customClass="RMSIndexView">
-                                <rect key="frame" x="108" y="166" width="200" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                            </customView>
-                            <customView id="APV-5b-cPM" customClass="RMSIndexView">
-                                <rect key="frame" x="108" y="140" width="200" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                            </customView>
-                            <customView id="hvE-cV-4kQ" customClass="RMSStereoView">
-                                <rect key="frame" x="108" y="75" width="200" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                            </customView>
-                            <customView id="GvO-I4-gXx" customClass="RMSIndexView">
-                                <rect key="frame" x="108" y="96" width="200" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                            </customView>
-                            <customView id="JMR-Sx-i6l" customClass="RMSIndexView">
-                                <rect key="frame" x="108" y="70" width="200" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                            </customView>
-                            <slider verticalHuggingPriority="750" id="Nph-mz-VIb">
-                                <rect key="frame" x="18" y="37" width="292" height="27"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1.2" doubleValue="1" tickMarkPosition="below" numberOfTickMarks="7" sliderType="linear" id="Qbx-ti-XM3"/>
-                                <connections>
-                                    <action selector="oscillatorVolumeChanged:" target="-2" id="fBj-x4-qCl"/>
-                                </connections>
-                            </slider>
-                            <slider verticalHuggingPriority="750" id="KBg-jx-mlk">
-                                <rect key="frame" x="18" y="182" width="292" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
-                                <animations/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1.2" doubleValue="1" tickMarkPosition="below" numberOfTickMarks="7" sliderType="linear" id="tY6-FG-gxt"/>
-                                <connections>
-                                    <action selector="loop1VolumeChanged:" target="-2" id="XE4-db-90a"/>
-                                </connections>
-                            </slider>
-                        </subviews>
                         <animations/>
                     </view>
                     <animations/>
@@ -166,5 +53,11 @@
             <animations/>
             <point key="canvasLocation" x="169" y="132.5"/>
         </customView>
+        <customObject id="OZi-ZS-09R" customClass="AERMSStereoLevels">
+            <connections>
+                <outlet property="view" destination="IJl-IC-2O2" id="4x6-qc-Drx"/>
+            </connections>
+        </customObject>
+        <customObject id="D0z-In-EoE" customClass="AERMSStereoLevels"/>
     </objects>
 </document>

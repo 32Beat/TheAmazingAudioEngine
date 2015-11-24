@@ -15,8 +15,6 @@
 	Float64 mSampleRate;
 	rmsengine_t mEngineL;
 	rmsengine_t mEngineR;
-	
-	RMSStereoView *mView;
 }
 @end
 
@@ -92,9 +90,9 @@ static void audioCallback(__unsafe_unretained AERMSStereoLevels *THIS,
 
 - (void) setView:(RMSStereoView *)view
 {
-	if (mView != view)
+	if (_view != view)
 	{
-		mView = view;
+		_view = view;
 		view.enginePtrL = &mEngineL;
 		view.enginePtrR = &mEngineR;
 	}
@@ -109,7 +107,7 @@ static void audioCallback(__unsafe_unretained AERMSStereoLevels *THIS,
 { [RMSTimer removeRMSTimerObserver:self]; }
 
 - (void) globalRMSTimerDidFire
-{ [mView updateLevels]; }
+{ [_view updateLevels]; }
 
 ////////////////////////////////////////////////////////////////////////////////
 @end

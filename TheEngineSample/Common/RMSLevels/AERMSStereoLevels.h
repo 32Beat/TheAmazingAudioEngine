@@ -12,7 +12,10 @@
 #import "RMSStereoView.h"
 
 @interface AERMSStereoLevels : NSObject <AEAudioReceiver, RMSTimerProtocol>
-- (void) setView:(RMSStereoView *)view;
+
+@property (nonatomic) IBOutlet RMSStereoView *view;
+
 - (void) startUpdating;
 - (void) stopUpdating;
+
 @end

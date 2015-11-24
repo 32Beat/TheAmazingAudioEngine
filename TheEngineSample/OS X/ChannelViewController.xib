@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ChannelViewController">
+            <connections>
+                <outlet property="playButton" destination="qoJ-oF-tLA" id="GNe-pp-rMu"/>
+                <outlet property="stereoLevels" destination="Jnv-QW-Lj1" id="TEe-Bc-LDw"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+                <outlet property="volumeSlider" destination="C0a-3p-Fpz" id="vrY-B9-V8C"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="328" height="78"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoJ-oF-tLA">
+                    <rect key="frame" x="20" y="27" width="80" height="31"/>
+                    <animations/>
+                    <buttonCell key="cell" type="square" title="Play" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QbW-ne-GIM">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="didAdjustButton:" target="-2" id="S0Z-KP-E5I"/>
+                    </connections>
+                </button>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3FH-xy-bNd" customClass="RMSStereoView">
+                    <rect key="frame" x="108" y="32" width="200" height="21"/>
+                    <animations/>
+                </customView>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xen-A3-t57" customClass="RMSIndexView">
+                    <rect key="frame" x="108" y="53" width="200" height="5"/>
+                    <animations/>
+                </customView>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RhL-2H-F1T" customClass="RMSIndexView">
+                    <rect key="frame" x="108" y="27" width="200" height="5"/>
+                    <animations/>
+                </customView>
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C0a-3p-Fpz">
+                    <rect key="frame" x="18" y="-1" width="292" height="27"/>
+                    <animations/>
+                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1.2" doubleValue="1" tickMarkPosition="below" numberOfTickMarks="7" sliderType="linear" id="QFC-ws-fFC"/>
+                    <connections>
+                        <action selector="didAdjustSlider:" target="-2" id="7xW-Y6-Hbz"/>
+                    </connections>
+                </slider>
+            </subviews>
+            <animations/>
+            <point key="canvasLocation" x="277" y="186"/>
+        </customView>
+        <customObject id="Jnv-QW-Lj1" customClass="AERMSStereoLevels">
+            <connections>
+                <outlet property="view" destination="3FH-xy-bNd" id="uvN-lf-BLb"/>
+            </connections>
+        </customObject>
+    </objects>
+</document>

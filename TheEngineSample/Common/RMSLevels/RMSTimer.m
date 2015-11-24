@@ -70,7 +70,12 @@
 
 - (void) removeRMSTimerObserver:(id)observer
 {
-	[mObservers removeObject:observer];
+	if ([mObservers indexOfObjectIdenticalTo:observer] != NSNotFound)
+	{
+		[mObservers removeObject:observer];
+		if (self.observers.count == 0)
+		{ [self stopTimer]; }
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
