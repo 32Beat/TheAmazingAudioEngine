@@ -92,7 +92,7 @@ static void audioCallback(__unsafe_unretained AERMSBalanceView *THIS,
 {
 	self.enginePtrL = &self->mEngineL;
 	self.enginePtrR = &self->mEngineR;
-	[super timerDidFire:timer];
+	//[super timerDidFire:timer];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

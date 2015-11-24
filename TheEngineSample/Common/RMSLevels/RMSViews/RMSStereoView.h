@@ -10,7 +10,7 @@
 #import "RMSTimerView.h"
 #import "RMSResultView.h"
 
-@interface RMSStereoView : RMSTimerView
+@interface RMSStereoView : NSView
 
 @property (nonatomic, assign) const rmsengine_t *enginePtrL;
 @property (nonatomic, assign) const rmsengine_t *enginePtrR;

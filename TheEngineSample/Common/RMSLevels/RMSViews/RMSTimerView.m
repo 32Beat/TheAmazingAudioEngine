@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #import "RMSTimerView.h"
+#import "RMSTimer.h"
 
 
 @interface RMSTimerView ()
@@ -23,6 +24,9 @@
 
 - (void) startUpdating
 {
+	[RMSTimer addRMSTimerObserver:self];
+	return;
+	
 	if (mTimer == nil)
 	{
 		// set timer to appr 25 updates per second

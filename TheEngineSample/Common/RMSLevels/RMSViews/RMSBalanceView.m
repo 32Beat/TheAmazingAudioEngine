@@ -22,9 +22,9 @@
 @implementation RMSBalanceView
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void) timerDidFire:(NSTimer *)timer
+- (void) updateLevels
 {
-	[self updateLevels];
+	[super updateLevels];
 	[self updateBalance];
 }
 

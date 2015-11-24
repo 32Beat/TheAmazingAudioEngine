@@ -15,6 +15,7 @@
 #import "AERecorder.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import "AERMSStereoLevels.h"
 #import "AERMSBalanceView.h"
 
 #define checkResult(result,operation) (_checkResult((result),(operation),strrchr(__FILE__, '/')+1,__LINE__))
@@ -58,6 +59,8 @@ static const int kInputChannelsChangedContext;
 @property (nonatomic, strong) NSButton *playButton;
 @property (nonatomic, strong) NSButton *recordButton;
 
+@property (nonatomic) AERMSStereoLevels *stereoLevels;
+
 @end
 
 @implementation ViewController
@@ -66,6 +69,14 @@ static const int kInputChannelsChangedContext;
     self.view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 400, 500)];
 }
 */
+
+
+- (AERMSStereoLevels *) stereoLevels
+{
+	if (_stereoLevels == nil)
+	{ _stereoLevels = [AERMSStereoLevels new]; }
+	return _stereoLevels;
+}
 
 - (NSString *) nibName
 { return @"MainView"; }
@@ -82,10 +93,12 @@ static const int kInputChannelsChangedContext;
 	
 	if (self.balanceView != nil)
 	{
-		[_audioController addOutputReceiver:self.balanceView];
-		[self.balanceView startUpdating];
+		[_audioController addOutputReceiver:self.stereoLevels];
+		[self.stereoLevels setView:self.balanceView];
+		[self.stereoLevels startUpdating];
+		
 	}
-	
+/*
 	if (self.drumLoopRMSView != nil)
 	{
 		[_audioController addOutputReceiver:self.drumLoopRMSView forChannel:self.drumLoop];
@@ -106,7 +119,7 @@ static const int kInputChannelsChangedContext;
 		[self.oscillatorRMSView startUpdating];
 		
 	}
-	
+*/
 /*
     self.outputOscilloscope = [[TPOscilloscopeLayer alloc] initWithAudioDescription:_audioController.audioDescription];
     _outputOscilloscope.frame = NSMakeRect(0, 10, _headerView.bounds.size.width, 80);

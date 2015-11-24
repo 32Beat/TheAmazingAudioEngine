@@ -1,29 +1,36 @@
-////////////////////////////////////////////////////////////////////////////////
-/*  
-	AERMSStereoView.m
+//
+//  AERMSStereoLevels.m
+//  TheEngineSample
+//
+//  Created by 32BT on 24/11/15.
+//  Copyright © 2015 A Tasty Pixel. All rights reserved.
+//
 
-	Created by 32BT on 22/11/15.
-	Copyright © 2015 32BT. All rights reserved.
-*/
-////////////////////////////////////////////////////////////////////////////////
+#import "AERMSStereoLevels.h"
+#import "RMSStereoView.h"
 
-#import "AERMSStereoView.h"
 
-////////////////////////////////////////////////////////////////////////////////
-
-@interface AERMSStereoView ()
+@interface AERMSStereoLevels ()
 {
 	Float64 mSampleRate;
 	rmsengine_t mEngineL;
 	rmsengine_t mEngineR;
+	
+	RMSStereoView *mView;
 }
 @end
 
+
 ////////////////////////////////////////////////////////////////////////////////
-@implementation AERMSStereoView
+@implementation AERMSStereoLevels
 ////////////////////////////////////////////////////////////////////////////////
 
-static void audioCallback(__unsafe_unretained AERMSStereoView *THIS,
+-(AEAudioReceiverCallback)receiverCallback
+{ return &audioCallback; }
+
+////////////////////////////////////////////////////////////////////////////////
+
+static void audioCallback(__unsafe_unretained AERMSStereoLevels *THIS,
                           __unsafe_unretained AEAudioController *audioController,
                           void *source,
                           const AudioTimeStamp *time,
@@ -83,16 +90,30 @@ static void audioCallback(__unsafe_unretained AERMSStereoView *THIS,
 
 ////////////////////////////////////////////////////////////////////////////////
 
--(AEAudioReceiverCallback)receiverCallback
-{ return &audioCallback; }
+- (void) setView:(RMSStereoView *)view
+{
+	if (mView != view)
+	{
+		mView = view;
+		view.enginePtrL = &mEngineL;
+		view.enginePtrR = &mEngineR;
+	}
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void) timerDidFire:(NSTimer *)timer
+- (void) startUpdating
+{ [RMSTimer addRMSTimerObserver:self]; }
+
+- (void) stopUpdating
+{ [RMSTimer removeRMSTimerObserver:self]; }
+
+- (void) globalRMSTimerDidFire
 {
-	self.enginePtrL = &self->mEngineL;
-	self.enginePtrR = &self->mEngineR;
-	//[super timerDidFire:timer];
+	if (mView != nil)
+	{
+		[mView updateLevels];
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
