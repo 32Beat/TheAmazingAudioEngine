@@ -44,17 +44,37 @@ static void audioCallback(__unsafe_unretained AERMSStereoLevels *THIS,
 		THIS->mEngineR = RMSEngineInit(sampleRate);
 	}
 
+	// Process first output buffer through left engine
+	if (audio->mNumberBuffers > 0)
+	{
+		Float32 *srcPtr = audio->mBuffers[0].mData;
+		RMSEngineAddSamples32(&THIS->mEngineL, srcPtr, frames);
+	}
+	
+	// Process second output buffer through right engine
+	if (audio->mNumberBuffers > 1)
+	{
+		Float32 *srcPtr = audio->mBuffers[1].mData;
+		RMSEngineAddSamples32(&THIS->mEngineR, srcPtr, frames);
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/*
+	If there is any advantage to multithreaded processing, 
+	then this isn't it according to TAAE_REPORT_RENDER_TIME
+	
 	if (audio->mNumberBuffers > 1)
 	{
 		dispatch_queue_t globalQueue = dispatch_get_global_queue \
 		(QOS_CLASS_USER_INITIATED, DISPATCH_QUEUE_PRIORITY_HIGH);
-/*
+
 		// Get current and global queue
 		dispatch_queue_t currentQueue = dispatch_get_current_queue();
  
 		// Make sure this isn't the global queue
 		if (currentQueue != globalQueue)
-*/
+
 			// dispatch for each channel
 			dispatch_apply(audio->mNumberBuffers, globalQueue,
 			
@@ -69,23 +89,7 @@ static void audioCallback(__unsafe_unretained AERMSStereoLevels *THIS,
 			});
 		
 	}
-/*
-	// Process first output buffer through left engine
-	if (audio->mNumberBuffers > 0)
-	{
-		Float32 *srcPtr = audio->mBuffers[0].mData;
-		RMSEngineAddSamples32(&THIS->mEngineL, srcPtr, frames);
-	}
-	
-	// Process second output buffer through right engine
-	if (audio->mNumberBuffers > 1)
-	{
-		Float32 *srcPtr = audio->mBuffers[1].mData;
-		RMSEngineAddSamples32(&THIS->mEngineR, srcPtr, frames);
-	}
 */
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 
 - (void) setView:(RMSStereoView *)view

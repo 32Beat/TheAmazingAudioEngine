@@ -52,18 +52,35 @@
 	[self.audioController addOutputReceiver:self.stereoLevels forChannel:mChannel];
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 - (void) viewWillAppear
 {
 	[super viewWillAppear];
+	//[RMSTimer addRMSTimerObserver:self];
 	[self.stereoLevels startUpdating];
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 - (void) viewWillDisappear
 {
 	[self.stereoLevels stopUpdating];
+	//[RMSTimer removeRMSTimerObserver:self];
 	[super viewWillDisappear];
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+- (void) globalRMSTimerDidFire
+{ [self.stereoLevels.view updateLevels]; }
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark
+////////////////////////////////////////////////////////////////////////////////
+
+- (void) setButtonTitle:(NSString *)str
+{ self.playButton.title = str; }
 
 - (IBAction) didAdjustButton:(NSButton *)button
 {

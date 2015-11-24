@@ -8,10 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AEAudioController.h"
+#import "RMSTimer.h"
 
-@interface ChannelViewController : NSViewController
+@interface ChannelViewController : NSViewController <RMSTimerProtocol>
 
 - (instancetype) initWithAudioController:(AEAudioController *)audioController
 					channel:(id<AEAudioPlayable>)channel;
+
+- (void) setButtonTitle:(NSString *)str;
 
 @end

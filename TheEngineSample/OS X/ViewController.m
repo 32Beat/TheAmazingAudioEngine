@@ -141,25 +141,24 @@ static const int kInputChannelsChangedContext;
 	{
 		self.drumLoopVC = [[ChannelViewController alloc]
 		initWithAudioController:_audioController channel:self.drumLoop];
-
 		[self addChannelVC:self.drumLoopVC];
+		self.drumLoopVC.buttonTitle = @"Drums";
 	}
 
 	if (self.organLoop != nil)
 	{
 		self.organLoopVC = [[ChannelViewController alloc]
 		initWithAudioController:_audioController channel:self.organLoop];
-
 		[self addChannelVC:self.organLoopVC];
+		self.organLoopVC.buttonTitle = @"Organ";
 	}
 	
-
 	if (self.oscillator != nil)
 	{
 		self.oscillatorVC = [[ChannelViewController alloc]
 		initWithAudioController:_audioController channel:self.oscillator];
-
 		[self addChannelVC:self.oscillatorVC];
+		self.oscillatorVC.buttonTitle = @"Oscillator";
 	}
 	
 	return;
