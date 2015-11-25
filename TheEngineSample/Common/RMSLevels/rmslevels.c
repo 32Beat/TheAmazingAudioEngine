@@ -13,14 +13,19 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-static inline double rms_add(double A, double M, double S)
+static inline double rms_add(double A, double M, double S) \
 { return A + M * (S - A); }
 
-static inline double rms_max(double A, double M, double S)
+//static inline double rms_max(double A, double M, double S) \
 { return A > S ? rms_add(A, M, S) : S; }
 
 //static inline double rms_min(double A, double M, double S) \
 { return A < S ? rms_add(A, M, S) : S; }
+
+////////////////////////////////////////////////////////////////////////////////
+
+void RMSEngineSetMaxDecayRate(rmsengine_t *engine, double decayRate);
+void RMSEngineSetHldDecayRate(rmsengine_t *engine, double decayRate);
 
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark
@@ -49,8 +54,8 @@ void RMSEngineSetResponse(rmsengine_t *engine, double milliSeconds, double sampl
 	
 	engine->mBalM = 1.0 / (1.0 + decayRate * 10);
 	engine->mAvgM = 1.0 / (1.0 + decayRate);
-	engine->mMaxM = 1.0 / (1.0 + decayRate);
-	engine->mHldM = 1.0 / (1.0 + decayRate * 5);
+	RMSEngineSetMaxDecayRate(engine, 1.0 * decayRate);
+	RMSEngineSetHldDecayRate(engine, 5.0 * decayRate);
 	
 	// default hold time = 1.0 seconds
 	engine->mHldT = 1.0 * sampleRate;
@@ -58,7 +63,15 @@ void RMSEngineSetResponse(rmsengine_t *engine, double milliSeconds, double sampl
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void RMSEngineAddSample(rmsengine_t *engine, double sample)
+void RMSEngineSetMaxDecayRate(rmsengine_t *engine, double decayRate)
+{ engine->mMaxM = decayRate / (decayRate + 1.0); }
+
+void RMSEngineSetHldDecayRate(rmsengine_t *engine, double decayRate)
+{ engine->mHldM = decayRate / (decayRate + 1.0); }
+
+////////////////////////////////////////////////////////////////////////////////
+
+inline void RMSEngineAddSample(rmsengine_t *engine, double sample)
 {
 	// Compute absolute value
 	sample = fabs(sample);
@@ -76,17 +89,20 @@ void RMSEngineAddSample(rmsengine_t *engine, double sample)
 		engine->mHldN = engine->mHldT;
 	}
 	else
-	if (engine->mHldN > 0.0)
+	if (engine->mHldN != 0)
 	{
-		engine->mHldN -= 1.0;
+		engine->mHldN -= 1;
 	}
 	else
 	{
-		engine->mHld = rms_add(engine->mHld, engine->mHldM, 0.0);
+		engine->mHld *= engine->mHldM;
 	}
 	
 	// Update maximum
-	engine->mMax = rms_max(engine->mMax, engine->mMaxM, sample);
+	if (engine->mMax < sample)
+		engine->mMax = sample;
+	else
+		engine->mMax *= engine->mMaxM;
 
 	// the s in rms
 	sample *= sample;

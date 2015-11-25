@@ -8,7 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ViewController">
             <connections>
                 <outlet property="balanceView" destination="IJl-IC-2O2" id="S1n-mh-zDZ"/>
-                <outlet property="drumLoopLevels" destination="D0z-In-EoE" id="F7Q-D0-cYc"/>
+                <outlet property="groupLevels" destination="jZy-yB-UaG" id="MtN-8Z-V7R"/>
                 <outlet property="groupView" destination="2lr-GW-lps" id="wQH-Tp-0VQ"/>
                 <outlet property="indexViewL" destination="NSf-fA-yJj" id="UHy-to-KnT"/>
                 <outlet property="indexViewR" destination="4X6-k6-7CL" id="JB2-OR-hng"/>
@@ -49,15 +49,34 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
+                <customView id="Oke-x8-Vh4" customClass="RMSStereoView">
+                    <rect key="frame" x="101" y="237" width="200" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <animations/>
+                </customView>
+                <customView id="9Qz-cK-xzA" customClass="RMSIndexView">
+                    <rect key="frame" x="101" y="258" width="200" height="5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <animations/>
+                </customView>
+                <customView id="ORC-xh-C3k" customClass="RMSIndexView">
+                    <rect key="frame" x="101" y="232" width="200" height="5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <animations/>
+                </customView>
             </subviews>
             <animations/>
-            <point key="canvasLocation" x="169" y="132.5"/>
+            <point key="canvasLocation" x="-40" y="75.5"/>
         </customView>
         <customObject id="OZi-ZS-09R" customClass="AERMSStereoLevels">
             <connections>
                 <outlet property="view" destination="IJl-IC-2O2" id="4x6-qc-Drx"/>
             </connections>
         </customObject>
-        <customObject id="D0z-In-EoE" customClass="AERMSStereoLevels"/>
+        <customObject id="jZy-yB-UaG" customClass="AERMSStereoLevels">
+            <connections>
+                <outlet property="view" destination="Oke-x8-Vh4" id="kdQ-uK-WcC"/>
+            </connections>
+        </customObject>
     </objects>
 </document>

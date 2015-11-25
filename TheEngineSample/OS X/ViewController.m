@@ -63,11 +63,8 @@ static const int kInputChannelsChangedContext;
 @property (nonatomic) ChannelViewController *organLoopVC;
 @property (nonatomic) ChannelViewController *oscillatorVC;
 
-
+@property (nonatomic) IBOutlet AERMSStereoLevels *groupLevels;
 @property (nonatomic) IBOutlet AERMSStereoLevels *stereoLevels;
-@property (nonatomic) IBOutlet AERMSStereoLevels *drumLoopLevels;
-@property (nonatomic) IBOutlet AERMSStereoLevels *organLoopLevels;
-@property (nonatomic) IBOutlet AERMSStereoLevels *oscillatorLevels;
 
 @end
 
@@ -86,27 +83,7 @@ static const int kInputChannelsChangedContext;
 	return _stereoLevels;
 }
 
-- (AERMSStereoLevels *) drumLoopLevels
-{
-	if (_drumLoopLevels == nil)
-	{ _drumLoopLevels = [AERMSStereoLevels new]; }
-	return _drumLoopLevels;
-}
 */
-- (AERMSStereoLevels *) organLoopLevels
-{
-	if (_organLoopLevels == nil)
-	{ _organLoopLevels = [AERMSStereoLevels new]; }
-	return _organLoopLevels;
-}
-
-- (AERMSStereoLevels *) oscillatorLevels
-{
-	if (_oscillatorLevels == nil)
-	{ _oscillatorLevels = [AERMSStereoLevels new]; }
-	return _oscillatorLevels;
-}
-
 
 - (void) addChannelVC:(ChannelViewController *)channelVC
 {
@@ -136,6 +113,19 @@ static const int kInputChannelsChangedContext;
     [self.view addSubview:_headerView];
 	
 	self.indexViewL.direction = eRMSViewDirectionW;
+
+
+	if (self.stereoLevels != nil)
+	{
+		[_audioController addOutputReceiver:self.stereoLevels];
+		[self.stereoLevels startUpdating];
+	}
+
+	if (self.groupLevels != nil)
+	{
+		[_audioController addOutputReceiver:self.groupLevels forChannelGroup:_group];
+		[self.groupLevels startUpdating];
+	}
 	
 	if (self.drumLoop != nil)
 	{
@@ -160,6 +150,8 @@ static const int kInputChannelsChangedContext;
 		[self addChannelVC:self.oscillatorVC];
 		self.oscillatorVC.buttonTitle = @"Oscillator";
 	}
+	
+	
 	
 	return;
 	

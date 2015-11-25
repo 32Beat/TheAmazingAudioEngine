@@ -84,6 +84,7 @@ rmsresult_t RMSEngineFetchResult(const rmsengine_t *enginePtr);
 
 void RMSEngineSetResponse(rmsengine_t *engine, double milliSeconds, double sampleRate);
 void RMSEngineSetDecayRate(rmsengine_t *engine, double decayRate);
+void RMSEngineSetHldDecayRate(rmsengine_t *engine, double decayRate);
 
 ////////////////////////////////////////////////////////////////////////////////
 #endif // rmslevels_h

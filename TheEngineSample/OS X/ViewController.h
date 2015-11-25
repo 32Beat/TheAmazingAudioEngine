@@ -21,14 +21,6 @@
 @property (nonatomic, assign) IBOutlet RMSIndexView *indexViewR;
 
 @property (nonatomic, assign) IBOutlet NSView *groupView;
-@property (nonatomic, assign) IBOutlet RMSStereoView *drumLoopRMSView;
-@property (nonatomic, assign) IBOutlet RMSStereoView *organLoopRMSView;
-@property (nonatomic, assign) IBOutlet RMSStereoView *oscillatorRMSView;
-
-
-@property (nonatomic, assign) IBOutlet NSButton *drumLoopButton;
-@property (nonatomic, assign) IBOutlet NSButton *organLoopButton;
-@property (nonatomic, assign) IBOutlet NSButton *oscillatorButton;
 
 - (instancetype)initWithAudioController:(AEAudioController *)audioController;
 
