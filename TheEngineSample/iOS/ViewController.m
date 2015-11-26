@@ -281,7 +281,6 @@ static const int kInputChannelsChangedContext;
             UISwitch * onSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
             onSwitch.translatesAutoresizingMaskIntoConstraints = NO;
             onSwitch.on = _expander != nil;
-            [onSwitch addTarget:self action:@selector(expanderSwitchChanged:) forControlEvents:UIControlEventValueChanged];
             [view addSubview:slider];
             [view addSubview:onSwitch];
             [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[slider]-20-[onSwitch]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(slider, onSwitch)]];
@@ -563,7 +562,7 @@ static const int kInputChannelsChangedContext;
 
 - (void)playthroughSwitchChanged:(UISwitch*)sender {
     if ( sender.isOn ) {
-        self.playthrough = [[AEPlaythroughChannel alloc] initWithAudioController:_audioController];
+        self.playthrough = [[AEPlaythroughChannel alloc] init];
         [_audioController addInputReceiver:_playthrough];
         [_audioController addChannels:@[_playthrough]];
     } else {
