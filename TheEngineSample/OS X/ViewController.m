@@ -66,6 +66,8 @@ static const int kInputChannelsChangedContext;
 @property (nonatomic) IBOutlet AERMSStereoLevels *groupLevels;
 @property (nonatomic) IBOutlet AERMSStereoLevels *stereoLevels;
 
+@property (nonatomic, assign) IBOutlet NSButton *fileButton;
+
 @end
 
 @implementation ViewController
@@ -729,6 +731,20 @@ static inline float translate(float val, float min, float max) {
         sender.state = NSOnState;
     }
 }
+
+
+- (IBAction) didSelectButton:(id)button
+{
+	if (button == self.fileButton)
+	{
+		NSOpenPanel *panel = [NSOpenPanel openPanel];
+		[panel beginWithCompletionHandler:^(NSInteger result)
+		{
+		}];
+	}
+}
+
+
 
 - (void)oneshotAudioUnitPlayButtonPressed:(NSButton *)sender {
     if ( !_audioUnitFile ) {

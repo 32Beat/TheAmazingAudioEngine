@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ViewController">
             <connections>
                 <outlet property="balanceView" destination="IJl-IC-2O2" id="S1n-mh-zDZ"/>
+                <outlet property="fileButton" destination="kZb-AE-1wI" id="7he-et-fNM"/>
                 <outlet property="groupLevels" destination="jZy-yB-UaG" id="MtN-8Z-V7R"/>
                 <outlet property="groupView" destination="2lr-GW-lps" id="wQH-Tp-0VQ"/>
                 <outlet property="indexViewL" destination="NSf-fA-yJj" id="UHy-to-KnT"/>
@@ -64,6 +65,18 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <animations/>
                 </customView>
+                <button verticalHuggingPriority="750" id="kZb-AE-1wI">
+                    <rect key="frame" x="14" y="173" width="85" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <animations/>
+                    <buttonCell key="cell" type="push" title="Open..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="F2S-hE-F4S">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="didSelectButton:" target="-2" id="Aor-cy-Z00"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <point key="canvasLocation" x="-40" y="75.5"/>

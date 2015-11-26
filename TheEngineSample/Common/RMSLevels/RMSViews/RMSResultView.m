@@ -113,33 +113,36 @@
 
 - (void)drawRect:(NSRect)rect
 {
-	// Reverse direction if necessary
-	if (self.direction != 0)
+	// If direction == auto, adjust according to rectangle
+	if (self.direction == 0)
 	{
-		CGContextRef context = NSGraphicsGetCurrentContext();
-		CGContextTranslateCTM(context, self.bounds.size.width, 0.0);
-		CGContextScaleCTM(context, -1.0, 1.0);
+		self.direction = self.bounds.size.width > self.bounds.size.height ?
+		eRMSViewDirectionE : eRMSViewDirectionN;
 	}
-	[self drawHorizontal];
-	return;
-	[[self bckColor] set];
-	NSRectFill(self.bounds);
-
-	rmsresult_t levels = mLevels;
-
-	if (levels.mHld > 0.0)
+	
+	// uneven direction is horizontal
+	if (self.direction & 0x01)
 	{
-		if (levels.mHld > 1.0)
-			[[self clpColor] set];
-		else
-			[[self hldColor] set];
-		NSRectFill([self boundsWithRatio:levels.mHld]);
+		// Reverse direction if necessary
+		if (self.direction & 0x02)
+		{
+			CGContextRef context = NSGraphicsGetCurrentContext();
+			CGContextTranslateCTM(context, self.bounds.size.width, 0.0);
+			CGContextScaleCTM(context, -1.0, 1.0);
+		}
 		
-		[[self maxColor] set];
-		NSRectFill([self boundsWithRatio:levels.mMax]);
-		
-		[[self avgColor] set];
-		NSRectFill([self boundsWithRatio:levels.mAvg]);
+		[self drawHorizontal];
+	}
+	else
+	{
+		if ((self.direction == eRMSViewDirectionS)==self.isFlipped)
+		{
+			CGContextRef context = NSGraphicsGetCurrentContext();
+			CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
+			CGContextScaleCTM(context, 1.0, -1.0);
+		}
+
+		[self drawVertical];
 	}
 }
 
@@ -180,6 +183,47 @@
 	frame.origin.x += frame.size.width;
 	frame.size.width = W;
 	frame.size.width -= frame.origin.x;
+	NSRectFill(frame);
+	
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+- (void) drawVertical
+{
+	// Source = mLevels
+	rmsresult_t levels = mLevels;
+	// Destination = frame
+	NSRect frame = self.bounds;
+	
+	// scale values to height
+	double S = frame.size.height;
+	
+	// Average
+	[[self avgColor] set];
+	frame.size.height = round(S * RMS2DISPLAY(levels.mAvg));
+	NSRectFill(frame);
+
+	[[self maxColor] set];
+	frame.origin.y += frame.size.height;
+	frame.size.height = round(S * RMS2DISPLAY(levels.mMax));
+	frame.size.height -= frame.origin.y;
+	NSRectFill(frame);
+
+	if (levels.mHld < 1.0)
+	[[self hldColor] set];
+	else
+	[[self clpColor] set];
+	
+	frame.origin.y += frame.size.height;
+	frame.size.height = round(S * RMS2DISPLAY(levels.mHld));
+	frame.size.height -= frame.origin.y;
+	NSRectFill(frame);
+
+	[[self bckColor] set];
+	frame.origin.y += frame.size.height;
+	frame.size.height = S;
+	frame.size.height -= frame.origin.y;
 	NSRectFill(frame);
 	
 }

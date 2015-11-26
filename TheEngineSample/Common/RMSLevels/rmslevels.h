@@ -47,7 +47,7 @@ typedef struct rmsengine_t
 	// counters
 	uint64_t mHldT; // hold time in samples
 	uint64_t mHldN; // hold time counter
-	uint64_t mClpN; // nominator, number of clipped samples
+	uint64_t mClpN; // numerator, number of clipped samples
 	uint64_t mClpD; // denominator, number of samples tested
 }
 rmsengine_t;
