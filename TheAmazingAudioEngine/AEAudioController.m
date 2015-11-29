@@ -110,7 +110,7 @@ enum {
 typedef struct __callback_t {
     void *callback;
     void *userInfo;
-    uint8_t flags;
+    uint32_t flags;
 } callback_t;
 
 /*!
@@ -300,13 +300,20 @@ static OSStatus fillComplexBufferInputProc(AudioConverterRef             inAudio
     return noErr;
 }
 
-typedef struct __channel_producer_arg_t {
+
+/*
+	channel contains the audiosource callback, 
+	and several additional callbacks in a table
+*/
+typedef struct __channel_producer_arg_t
+{
     AEChannelRef channel;
     AudioTimeStamp timeStamp;
     AudioTimeStamp originalTimeStamp;
     AudioUnitRenderActionFlags *ioActionFlags;
-    int nextFilterIndex;
-} channel_producer_arg_t;
+	UInt32 callbackCount; // number of additional callbacks to handle
+}
+channel_producer_arg_t;
 
 
 static inline void AudioBufferList_ClearBuffers(AudioBufferList *bufferList)
@@ -316,16 +323,53 @@ static inline void AudioBufferList_ClearBuffers(AudioBufferList *bufferList)
 }
 
 
-
-typedef struct AEChannelRefExtension
+////////////////////////////////////////////////////////////////////////////////
+/*
+typedef struct AEChannelProducerCallbackData
 {
 	AEChannelRef mChannelRef;
 	UInt32 mCallbackIndex;
 	
 	AudioTimeStamp mTimeStamp;
 }
-AEChannelRefExtension, *AEChannelXRef;
+AEChannelProducerCallbackData, *AEChannelProducerCallbackDataPtr;
 
+////////////////////////////////////////////////////////////////////////////////
+
+static OSStatus channelSourceCallback(AEChannelRef channel, AudioBufferList *audio, UInt32 *frames)
+{
+	AEAudioRenderCallback callback = (AEAudioRenderCallback) channel->ptr;
+	__unsafe_unretained id<AEAudioPlayable> channelObj = (__bridge id<AEAudioPlayable>) channel->object;
+
+	OSStatus result = callback(channelObj, (__bridge AEAudioController*)channel->audioController, &channel->timeStamp, *frames, audio);
+	if (result == noErr)
+	channel->timeStamp.mSampleTime += *frames;
+	
+	
+	return result;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+static OSStatus channelProductionCallback
+(AEChannelProducerCallbackData *dataPtr, AudioBufferList *audio, UInt32 *frames)
+{
+	if (dataPtr->mCallbackIndex == 0)
+	{
+		return channelSourceCallback(dataPtr->mChannelRef, audio, frames);
+	}
+	else
+	{
+		AEChannelProducerCallbackData data = dataPtr[0];
+		data.mCallbackIndex -= 1;
+		return channelFilterCallback(&data, audio, frames);
+	}
+	
+	return noErr;
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 static OSStatus AEChannelProduceAudioWithCallback
 (void *channelXRef, UInt32 frames, AudioBufferList *audio)
@@ -353,8 +397,8 @@ static OSStatus AEChannelFilterAudioWithCallback
 	{
 		return ((AEAudioFilterCallback)callback->callback)
 		((__bridge id)callback->userInfo, (__bridge AEAudioController *)channelRef->audioController,
-		&AEChannelProduceAudioWithCallback,
-		channelXRef,
+		&channelProducerCallback,
+		&channelProducerCallbackData,
 		&((AEChannelXRef)channelXRef)->mTimeStamp,
 		frames, audio);
 	}
@@ -364,13 +408,29 @@ static OSStatus AEChannelFilterAudioWithCallback
 
 
 
-
+*/
 static OSStatus channelAudioProducer(void *userInfo, AudioBufferList *audio, UInt32 *frames) {
     channel_producer_arg_t *arg = (channel_producer_arg_t*)userInfo;
     AEChannelRef channel = arg->channel;
     
-    OSStatus status = noErr;
+	UInt32 callbackCount = arg->callbackCount;
+	while (callbackCount != 0)
+	{
+		UInt32 index = (callbackCount -= 1);
+		callback_t *callback = &channel->callbacks.callbacks[index];
+		if ( callback->flags & kFilterFlag )
+		{
+			channel_producer_arg_t filterArg = *arg;
+			filterArg.callbackCount = callbackCount;
+			return ((AEAudioFilterCallback)callback->callback)(
+			(__bridge id)callback->userInfo,
+			(__bridge AEAudioController *)channel->audioController,
+			&channelAudioProducer, (void*)&filterArg, &arg->timeStamp, *frames, audio);
+ 		}
+	}
 
+    OSStatus status = noErr;
+/*
     // See if there's another filter
     for ( int i=channel->callbacks.count-1, filterIndex=0; i>=0; i-- ) {
         callback_t *callback = &channel->callbacks.callbacks[i];
@@ -384,7 +444,7 @@ static OSStatus channelAudioProducer(void *userInfo, AudioBufferList *audio, UIn
             filterIndex++;
         }
     }
-
+*/
     AudioBufferList_ClearBuffers(audio);
     
     if ( channel->type == kChannelTypeChannel )
@@ -447,7 +507,7 @@ static OSStatus renderCallback(void *inRefCon, AudioUnitRenderActionFlags *ioAct
         .timeStamp = timestamp,
         .originalTimeStamp = *inTimeStamp,
         .ioActionFlags = ioActionFlags,
-        .nextFilterIndex = 0
+		.callbackCount = channel->callbacks.count
     };
     
     THIS->_channelBeingRendered = channel;

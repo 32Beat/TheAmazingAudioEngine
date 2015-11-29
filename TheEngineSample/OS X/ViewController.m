@@ -630,7 +630,7 @@ static inline float translate(float val, float min, float max) {
 	if (_oscillator != nil) return _oscillator;
 	
     // Create a block-based channel, with an implementation of an oscillator
-    float oscillatorRate = 622.0/_audioController.audioDescription.mSampleRate;
+    float oscillatorRate = 441.0/_audioController.audioDescription.mSampleRate;
 
     __block float oscillatorPosition = 0;
 	self.oscillator = [AEBlockChannel channelWithBlock:^(
