@@ -315,6 +315,56 @@ static inline void AudioBufferList_ClearBuffers(AudioBufferList *bufferList)
 	{ vDSP_vclr(bufferList->mBuffers[n-1].mData, 1, bufferList->mBuffers[n-1].mDataByteSize>>2); }
 }
 
+
+
+typedef struct AEChannelRefExtension
+{
+	AEChannelRef mChannelRef;
+	UInt32 mCallbackIndex;
+	
+	AudioTimeStamp mTimeStamp;
+}
+AEChannelRefExtension, *AEChannelXRef;
+
+
+static OSStatus AEChannelProduceAudioWithCallback
+(void *channelXRef, UInt32 frames, AudioBufferList *audio)
+{
+	AEChannelRef channelRef = ((AEChannelXRef)channelXRef)->mChannelRef;
+	UInt32 callbackIndex = ((AEChannelXRef)channelXRef)->mCallbackIndex;
+	
+	callback_t *callback = &channelRef->callbacks.callbacks[callbackIndex];
+	if ( callback->flags & kFilterFlag )
+	{
+		AEChannelProduceAudioWithCallback(void *channelInfo, callbackIndex, frames, audio);
+	}
+}
+
+
+
+static OSStatus AEChannelFilterAudioWithCallback
+(void *channelXRef, UInt32 frames, AudioBufferList *audio)
+{
+	AEChannelRef channelRef = ((AEChannelXRef)channelXRef)->mChannelRef;
+	UInt32 callbackIndex = ((AEChannelXRef)channelXRef)->mCallbackIndex;
+
+	callback_t *callback = &channelRef->callbacks.callbacks[callbackIndex];
+	if ( callback->flags & kFilterFlag )
+	{
+		return ((AEAudioFilterCallback)callback->callback)
+		((__bridge id)callback->userInfo, (__bridge AEAudioController *)channelRef->audioController,
+		&AEChannelProduceAudioWithCallback,
+		channelXRef,
+		&((AEChannelXRef)channelXRef)->mTimeStamp,
+		frames, audio);
+	}
+	
+	return paramErr;
+}
+
+
+
+
 static OSStatus channelAudioProducer(void *userInfo, AudioBufferList *audio, UInt32 *frames) {
     channel_producer_arg_t *arg = (channel_producer_arg_t*)userInfo;
     AEChannelRef channel = arg->channel;
