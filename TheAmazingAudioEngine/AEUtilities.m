@@ -197,14 +197,18 @@ AudioComponentDescription AEAudioComponentDescriptionMake(OSType manufacturer, O
     return description;
 }
 
-static void AETimeInit() {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        mach_timebase_info_data_t tinfo;
-        mach_timebase_info(&tinfo);
-        __hostTicksToSeconds = ((double)tinfo.numer / tinfo.denom) * 1.0e-9;
-        __secondsToHostTicks = 1.0 / __hostTicksToSeconds;
-    });
+static void AETimeInit()
+{
+	static bool isInitialized = false;
+	if (!isInitialized)
+	{
+		mach_timebase_info_data_t tinfo;
+		mach_timebase_info(&tinfo);
+		__hostTicksToSeconds = 1.0e-9 * tinfo.numer / tinfo.denom;
+		__secondsToHostTicks = 1.0e+9 * tinfo.denom / tinfo.numer;
+		
+		isInitialized = true;
+	}
 }
 
 uint64_t AECurrentTimeInHostTicks(void) {
@@ -212,18 +216,21 @@ uint64_t AECurrentTimeInHostTicks(void) {
 }
 
 double AECurrentTimeInSeconds(void) {
-    if ( !__hostTicksToSeconds ) AETimeInit();
+    //if ( !__hostTicksToSeconds )
+	AETimeInit();
     return mach_absolute_time() * __hostTicksToSeconds;
 }
 
 uint64_t AEHostTicksFromSeconds(double seconds) {
-    if ( !__secondsToHostTicks ) AETimeInit();
+    //if ( !__secondsToHostTicks )
+	AETimeInit();
     assert(seconds >= 0);
-    return seconds * __secondsToHostTicks;
+    return round(seconds * __secondsToHostTicks);
 }
 
 double AESecondsFromHostTicks(uint64_t ticks) {
-    if ( !__hostTicksToSeconds ) AETimeInit();
+    //if ( !__hostTicksToSeconds )
+	AETimeInit();
     return ticks * __hostTicksToSeconds;
 }
 
