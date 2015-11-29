@@ -71,21 +71,9 @@ static const int kInputChannelsChangedContext;
 @end
 
 @implementation ViewController
-/*
-- (void)loadView {
-    self.view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 400, 500)];
-}
-*/
 
-/*
-- (AERMSStereoLevels *) stereoLevels
-{
-	if (_stereoLevels == nil)
-	{ _stereoLevels = [AERMSStereoLevels new]; }
-	return _stereoLevels;
-}
 
-*/
+
 
 - (void) addChannelVC:(ChannelViewController *)channelVC
 {
@@ -674,29 +662,6 @@ static inline float translate(float val, float min, float max) {
 }
 
 
-
-
-- (IBAction)loop1SwitchChanged:(NSButton *)sender
-{ self.drumLoop.channelIsMuted = (sender.state == NSOffState); }
-
-- (IBAction)loop1VolumeChanged:(NSSlider *)sender
-{ self.drumLoop.volume = sender.floatValue; }
-
-
-
-- (IBAction)loop2SwitchChanged:(NSButton *)sender
-{ self.organLoop.channelIsMuted = (sender.state == NSOffState); }
-
-- (IBAction)loop2VolumeChanged:(NSSlider *)sender
-{ self.organLoop.volume = sender.floatValue; }
-
-
-
-- (IBAction)oscillatorSwitchChanged:(NSButton *)sender
-{ _oscillator.channelIsMuted = (sender.state == NSOffState); }
-
-- (IBAction)oscillatorVolumeChanged:(NSSlider *)sender
-{ _oscillator.volume = sender.floatValue; }
 
 
 

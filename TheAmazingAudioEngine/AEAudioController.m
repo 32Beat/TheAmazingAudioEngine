@@ -41,7 +41,7 @@
 #import <pthread.h>
 
 // Uncomment the following or define the following symbol as part of your build process to enable per-second performance reports
-// #define TAAE_REPORT_RENDER_TIME
+ #define TAAE_REPORT_RENDER_TIME
 
 static const int kMaximumChannelsPerGroup              = 100;
 static const int kMaximumCallbacksPerSource            = 15;
@@ -309,12 +309,19 @@ typedef struct __channel_producer_arg_t {
     int nextFilterIndex;
 } channel_producer_arg_t;
 
+
+static inline void AudioBufferList_ClearBuffers(AudioBufferList *bufferList)
+{
+	for (UInt32 n=bufferList->mNumberBuffers; n!=0; n--)
+	{ vDSP_vclr(bufferList->mBuffers[n-1].mData, 1, bufferList->mBuffers[n-1].mDataByteSize>>2); }
+}
+
 static OSStatus channelAudioProducer(void *userInfo, AudioBufferList *audio, UInt32 *frames) {
     channel_producer_arg_t *arg = (channel_producer_arg_t*)userInfo;
     AEChannelRef channel = arg->channel;
     
     OSStatus status = noErr;
-    
+
     // See if there's another filter
     for ( int i=channel->callbacks.count-1, filterIndex=0; i>=0; i-- ) {
         callback_t *callback = &channel->callbacks.callbacks[i];
@@ -329,18 +336,20 @@ static OSStatus channelAudioProducer(void *userInfo, AudioBufferList *audio, UIn
         }
     }
 
-    for ( int i=0; i<audio->mNumberBuffers; i++ ) {
-        memset(audio->mBuffers[i].mData, 0, audio->mBuffers[i].mDataByteSize);
-    }
+    AudioBufferList_ClearBuffers(audio);
     
-    if ( channel->type == kChannelTypeChannel ) {
-        AEAudioRenderCallback callback = (AEAudioRenderCallback) channel->ptr;
-        __unsafe_unretained id<AEAudioPlayable> channelObj = (__bridge id<AEAudioPlayable>) channel->object;
-        
-        status = callback(channelObj, (__bridge AEAudioController*)channel->audioController, &channel->timeStamp, *frames, audio);
-        channel->timeStamp.mSampleTime += *frames;
-        
-    } else if ( channel->type == kChannelTypeGroup ) {
+    if ( channel->type == kChannelTypeChannel )
+	{
+		AEAudioRenderCallback callback = (AEAudioRenderCallback) channel->ptr;
+		__unsafe_unretained id<AEAudioPlayable> channelObj = (__bridge id<AEAudioPlayable>) channel->object;
+
+		status = callback(channelObj, (__bridge AEAudioController*)channel->audioController, &channel->timeStamp, *frames, audio);
+		channel->timeStamp.mSampleTime += *frames;
+
+    }
+	else
+	if ( channel->type == kChannelTypeGroup )
+	{
         AEChannelGroupRef group = (AEChannelGroupRef)channel->ptr;
         
         // Tell mixer/mixer's converter unit to render into audio
