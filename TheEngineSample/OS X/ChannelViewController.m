@@ -8,11 +8,11 @@
 
 #import "ChannelViewController.h"
 #import "AERMSStereoLevels.h"
-#import "AEGroupChannel.h"
+#import "AEChannelGroup.h"
 
 @interface ChannelViewController ()
 {
-	id<AEAudioPlayable> mChannel;
+	id<AEAudioPlayable> mSource;
 }
 
 @property (nonatomic, assign, readonly) AEAudioController *audioController;
@@ -35,7 +35,7 @@
 	if (self != nil)
 	{
 		_audioController = audioController;
-		mChannel = channel;
+		mSource = channel;
 	}
 	return self;
 }
@@ -47,10 +47,10 @@
     [super viewDidLoad];
     // Do view setup here.
 	
-	if ([mChannel isKindOfClass:[AEGroupChannel class]])
-		[(id)mChannel addOutputReceiver:self.stereoLevels];
+	if ([mSource isKindOfClass:[AEChannelGroup class]])
+		[(id)mSource addOutputReceiver:self.stereoLevels];
 	else
-		[self.audioController addOutputReceiver:self.stereoLevels forChannel:mChannel];
+		[self.audioController addOutputReceiver:self.stereoLevels forChannel:mSource];
 
 	[self updateButton];
 	[self updateVolume];
@@ -92,16 +92,20 @@
 
 - (void) updateButton
 {
-	// Default to on
-	NSInteger state = NSOnState;
-	
-	if ([mChannel respondsToSelector:@selector(channelIsMuted)])
-	{
-		state = mChannel.channelIsMuted ? NSOffState : NSOnState;
-	}
+	// Enable button only if mute is settable
+	BOOL enabledState =
+	[mSource respondsToSelector:@selector(setChannelIsMuted:)];
 
-	if (self.playButton.state != state)
-	{ self.playButton.state = state; }
+	if (self.playButton.enabled != enabledState)
+	{ self.playButton.enabled = enabledState; }
+	
+	// Fetch mute if available, default to ON
+	NSInteger switchState =
+	[mSource respondsToSelector:@selector(channelIsMuted)] ?
+	mSource.channelIsMuted ? NSOffState : NSOnState : NSOnState;
+	
+	if (self.playButton.state != switchState)
+	{ self.playButton.state = switchState; }
 }
 
 - (void) updateLevels
@@ -111,11 +115,19 @@
 
 - (void) updateVolume
 {
-	if ([mChannel respondsToSelector:@selector(volume)])
-	{
-		if (self.volumeSlider.floatValue != mChannel.volume)
-		{ self.volumeSlider.floatValue = mChannel.volume; }
-	}
+	// Enable slider only if volume is settable
+	BOOL enabledState =
+	[mSource respondsToSelector:@selector(setVolume:)];
+	
+	if (self.volumeSlider.enabled != enabledState)
+	{ self.volumeSlider.enabled = enabledState; }
+	
+	// Fetch volume if available, default to 1.0
+	float volume = [mSource respondsToSelector:@selector(volume)] ?
+	mSource.volume : 1.0;
+	
+	if (self.volumeSlider.floatValue != volume)
+	{ self.volumeSlider.floatValue = volume; }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -125,14 +137,14 @@
 
 - (IBAction) didAdjustButton:(NSButton *)button
 {
-	if ([mChannel respondsToSelector:@selector(setChannelIsMuted:)])
-	[(id)mChannel setChannelIsMuted:(button.state == NSOffState)];
+	if ([mSource respondsToSelector:@selector(setChannelIsMuted:)])
+	[(id)mSource setChannelIsMuted:(button.state == NSOffState)];
 }
 
 - (IBAction) didAdjustSlider:(NSSlider *)slider
 {
-	if ([mChannel respondsToSelector:@selector(setVolume:)])
-	[(id)mChannel setVolume:slider.floatValue];
+	if ([mSource respondsToSelector:@selector(setVolume:)])
+	[(id)mSource setVolume:slider.floatValue];
 }
 
 @end

@@ -80,14 +80,14 @@
 - (NSColor *) avgColor
 {
 	if (_avgColor == nil)
-	{ _avgColor = HSBCLR(240.0, 0.6, 0.9); }
+	{ _avgColor = HSBCLR(120.0, 0.6, 0.9); }
 	return _avgColor;
 }
 
 - (NSColor *) maxColor
 {
 	if (_maxColor == nil)
-	{ _maxColor = HSBCLR(240.0, 0.5, 1.0); }
+	{ _maxColor = HSBCLR(120.0, 0.5, 1.0); }
 	return _maxColor;
 }
 

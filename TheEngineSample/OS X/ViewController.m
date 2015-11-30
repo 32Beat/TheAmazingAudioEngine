@@ -18,7 +18,7 @@
 #import "ChannelViewController.h"
 #import "AERMSStereoLevels.h"
 
-#import "AEGroupChannel.h"
+#import "AEChannelGroup.h"
 
 #define checkResult(result,operation) (_checkResult((result),(operation),strrchr(__FILE__, '/')+1,__LINE__))
 static inline BOOL _checkResult(OSStatus result, const char *operation, const char* file, int line) {
@@ -36,7 +36,6 @@ static const int kInputChannelsChangedContext;
     AudioFileID _audioUnitFile;
     AEChannelGroupRef _group;
 	
-	AEGroupChannel *_groupChannel;
 	
     NSView *_headerView;
     NSTableView *_tableView;
@@ -63,6 +62,8 @@ static const int kInputChannelsChangedContext;
 @property (nonatomic, strong) AEAudioFilePlayer *player;
 @property (nonatomic, strong) NSButton *playButton;
 @property (nonatomic, strong) NSButton *recordButton;
+
+@property (nonatomic) AEChannelGroup *channelGroup;
 
 @property (nonatomic) ChannelViewController *groupVC;
 @property (nonatomic) ChannelViewController *drumLoopVC;
@@ -125,10 +126,10 @@ static const int kInputChannelsChangedContext;
 */
 
 	
-	if (_groupChannel != nil)
+	if (self.channelGroup != nil)
 	{
 		self.groupVC = [[ChannelViewController alloc]
-		initWithAudioController:_audioController channel:_groupChannel];
+		initWithAudioController:_audioController channel:self.channelGroup];
 		[self addChannelVC:self.groupVC];
 		self.groupVC.buttonTitle = @"Group";
 	}
@@ -229,7 +230,6 @@ static const int kInputChannelsChangedContext;
     
     self.audioController = audioController;
 	
-	[self prepareChannelGroup];
  /*
     // Create the first loop player
     self.loop1 = [AEAudioFilePlayer
@@ -590,13 +590,15 @@ static inline float translate(float val, float min, float max) {
 #pragma mark - UI Control
 
 // Create a group for loop1, loop2 and oscillator
-- (void) prepareChannelGroup
+- (AEChannelGroup *) channelGroup
 {
-	if (_groupChannel == nil)
+	if (_channelGroup == nil)
 	{
-		_groupChannel = [[AEGroupChannel alloc] initWithAudioController:_audioController];
-		[_groupChannel addChannels:@[self.drumLoop, self.organLoop, self.oscillator]];
+		_channelGroup = [[AEChannelGroup alloc] initWithAudioController:_audioController];
+		[_channelGroup addChannels:@[self.drumLoop, self.organLoop, self.oscillator]];
 	}
+	
+	return _channelGroup;
 }
 
 
