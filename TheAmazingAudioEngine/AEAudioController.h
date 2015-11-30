@@ -489,6 +489,9 @@ typedef AEAudioTimingCallback AEAudioControllerTimingCallback; // Temporary alia
  */
 typedef struct _channel_group_t* AEChannelGroupRef;
 
+void *AEChannelGroupGetAudioController(AEChannelGroupRef group);
+AudioUnit AEChannelGroupGetAudioUnit(AEChannelGroupRef group);
+
 @class AEAudioController;
 
 #pragma mark -

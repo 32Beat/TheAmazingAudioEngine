@@ -89,6 +89,8 @@
 		7F67C1891C0411F100F4E9F0 /* RMSTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C1871C0411F100F4E9F0 /* RMSTimer.m */; };
 		7F9EEE161C0241230034DB62 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */; };
 		7F9EEE171C0244F30034DB62 /* TPOscilloscopeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */; };
+		7FA556701C0C35DD00298563 /* AEGroupChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5566F1C0C35DD00298563 /* AEGroupChannel.m */; };
+		7FA556711C0C35DD00298563 /* AEGroupChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5566F1C0C35DD00298563 /* AEGroupChannel.m */; };
 		7FA834681C042F0700E0BA99 /* AERMSStereoLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA834671C042F0700E0BA99 /* AERMSStereoLevels.m */; };
 		7FA834691C042F0700E0BA99 /* AERMSStereoLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA834671C042F0700E0BA99 /* AERMSStereoLevels.m */; };
 		7FF8FA711C02349700AB4DDB /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FF8FA6F1C02349700AB4DDB /* MainView.xib */; };
@@ -222,6 +224,8 @@
 		7F67C1871C0411F100F4E9F0 /* RMSTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSTimer.m; sourceTree = "<group>"; };
 		7F9EEE141C0241230034DB62 /* TPOscilloscopeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPOscilloscopeLayer.h; sourceTree = "<group>"; };
 		7F9EEE151C0241230034DB62 /* TPOscilloscopeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPOscilloscopeLayer.m; sourceTree = "<group>"; };
+		7FA5566E1C0C35DD00298563 /* AEGroupChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEGroupChannel.h; path = TheEngineSample/Common/AEGroupChannel.h; sourceTree = SOURCE_ROOT; };
+		7FA5566F1C0C35DD00298563 /* AEGroupChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEGroupChannel.m; path = TheEngineSample/Common/AEGroupChannel.m; sourceTree = SOURCE_ROOT; };
 		7FA834661C042F0700E0BA99 /* AERMSStereoLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AERMSStereoLevels.h; sourceTree = "<group>"; };
 		7FA834671C042F0700E0BA99 /* AERMSStereoLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AERMSStereoLevels.m; sourceTree = "<group>"; };
 		7FF8FA701C02349700AB4DDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "TheEngineSample/OS X/Base.lproj/MainView.xib"; sourceTree = SOURCE_ROOT; };
@@ -431,6 +435,8 @@
 				7F6628A91C04902C00A0141B /* ChannelViewController.h */,
 				7F6628AA1C04902C00A0141B /* ChannelViewController.m */,
 				7F6628AB1C04902C00A0141B /* ChannelViewController.xib */,
+				7FA5566E1C0C35DD00298563 /* AEGroupChannel.h */,
+				7FA5566F1C0C35DD00298563 /* AEGroupChannel.m */,
 			);
 			path = TheEngineSampleOSX;
 			sourceTree = "<group>";
@@ -618,6 +624,7 @@
 				7F5D3B681C03404F008D0658 /* RMSIndexView.m in Sources */,
 				4C2933AB1BB2814400AAED25 /* AEPeakLimiterFilter.m in Sources */,
 				4C2933AF1BB2814400AAED25 /* AEVarispeedFilter.m in Sources */,
+				7FA556701C0C35DD00298563 /* AEGroupChannel.m in Sources */,
 				4C7C680916F1609800721E60 /* AEExpanderFilter.m in Sources */,
 				4C7C680A16F1609800721E60 /* AELimiter.m in Sources */,
 				4C2933991BB2814400AAED25 /* AEDelayFilter.m in Sources */,
@@ -657,6 +664,7 @@
 				4C2933AC1BB2814400AAED25 /* AEPeakLimiterFilter.m in Sources */,
 				7A532D2B1B7C6FA8006056DB /* AEPlaythroughChannel.m in Sources */,
 				7F9EEE171C0244F30034DB62 /* TPOscilloscopeLayer.m in Sources */,
+				7FA556711C0C35DD00298563 /* AEGroupChannel.m in Sources */,
 				7FA834691C042F0700E0BA99 /* AERMSStereoLevels.m in Sources */,
 				4C2933B01BB2814400AAED25 /* AEVarispeedFilter.m in Sources */,
 				4C50FF331B75936000E56620 /* ViewController.m in Sources */,

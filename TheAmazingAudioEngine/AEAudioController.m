@@ -198,6 +198,15 @@ typedef struct _channel_group_t {
     audio_level_monitor_t level_monitor_data;
 } channel_group_t;
 
+//AEChannelRef AEChannelGroupGetChannelRef(AEChannelGroupRef group) \
+{ return group ? group->channel : nil; }
+
+void *AEChannelGroupGetAudioController(AEChannelGroupRef group)
+{ return group ? group->channel ? group->channel->audioController : nil : nil; }
+
+AudioUnit AEChannelGroupGetAudioUnit(AEChannelGroupRef group)
+{ return group ? group->converterUnit ? group->converterUnit : group->mixerAudioUnit : nil; }
+
 /*!
  * Message queue
  */

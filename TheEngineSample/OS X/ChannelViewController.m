@@ -8,6 +8,7 @@
 
 #import "ChannelViewController.h"
 #import "AERMSStereoLevels.h"
+#import "AEGroupChannel.h"
 
 @interface ChannelViewController ()
 {
@@ -46,7 +47,10 @@
     [super viewDidLoad];
     // Do view setup here.
 	
-	[self.audioController addOutputReceiver:self.stereoLevels forChannel:mChannel];
+	if ([mChannel isKindOfClass:[AEGroupChannel class]])
+		[(id)mChannel addOutputReceiver:self.stereoLevels];
+	else
+		[self.audioController addOutputReceiver:self.stereoLevels forChannel:mChannel];
 
 	[self updateButton];
 	[self updateVolume];
@@ -88,7 +92,14 @@
 
 - (void) updateButton
 {
-	NSInteger state = mChannel.channelIsMuted ? NSOffState : NSOnState;
+	// Default to on
+	NSInteger state = NSOnState;
+	
+	if ([mChannel respondsToSelector:@selector(channelIsMuted)])
+	{
+		state = mChannel.channelIsMuted ? NSOffState : NSOnState;
+	}
+
 	if (self.playButton.state != state)
 	{ self.playButton.state = state; }
 }
@@ -100,8 +111,11 @@
 
 - (void) updateVolume
 {
-	if (self.volumeSlider.floatValue != mChannel.volume)
-	{ self.volumeSlider.floatValue = mChannel.volume; }
+	if ([mChannel respondsToSelector:@selector(volume)])
+	{
+		if (self.volumeSlider.floatValue != mChannel.volume)
+		{ self.volumeSlider.floatValue = mChannel.volume; }
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
